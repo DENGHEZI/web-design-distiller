@@ -12,6 +12,8 @@ agent_created: true
 
 核心主张：**设计结论必须落在可测量的数值或文件行号上**。禁止用「不够高级」「感觉乱」「更有质感」这类不可复核的表述作为结论。
 
+**v2 反自证原则（优先于本文件其余内容）**：静态合规分只衡量源码规则符合度，**不衡量视觉质量**。实测中两个视觉质量差异明显的页面（第 1 轮模板感版本 vs 第 2 轮重做版本）拿到同样的 100 分。因此结论必须分三层单独报告——① 静态合规 ② 真实浏览器测量 ③ 视觉质量盲评——禁止合并，禁止用「分数提升」代替「效果提升」。详见 `references/rubric.md` §0。
+
 ## 何时使用
 
 - 需要评估某个 HTML 页面 / 组件 / 落地页的设计质量。
@@ -23,7 +25,7 @@ agent_created: true
 ## 不适用场景与能力边界
 
 - **不要声称覆盖「所有」GitHub 项目或「所有」网页。** 采样方法、抓取日期、样本清单与覆盖边界写在 `references/sources.md`，每次引用时一并说明。
-- 静态脚本审计的是**源码**，不是真实浏览器体验。真实的 LCP / INP / CLS 必须用浏览器或 CrUX 现场数据测量；脚本只给出 LCP/CLS 的**风险代理指标**，报告里必须显式标注「未实测」。
+- 静态脚本审计的是**源码**。`scripts/browser_audit.py`（可选，需 Playwright + Edge）能补上本地真实渲染测量；但线上 CrUX/RUM 的 75 分位数据与 INP 仍需真实现场测量，报告里必须显式标注。
 - 脚本不解析打包后的 CSS-in-JS、Tailwind 编译产物或跨文件样式表（除非用 `--css` 追加）。遇到这类项目，先说明覆盖范围缩小，再执行。
 - 美学判断（品牌气质、文案说服力）属于主观项，必须由人给出，报告里单独列区，禁止伪装成客观分数。
 
@@ -81,22 +83,33 @@ python scripts/audit_page.py <target.html> --json reports/before.json
 
 ### P5 · 验收与效果评估（Verify & Score）
 
-复跑审计并生成对比报告：
+复跑静态审计，**并额外做真实浏览器验收**，再生成三层结论报告：
 
 ```bash
 python scripts/audit_page.py <after.html> --json reports/after.json
-python scripts/score.py --before reports/before.json --after reports/after.json --out reports/evaluation.md
+python scripts/browser_audit.py <before.html> --json reports/browser_before.json --screenshot shots/before.png
+python scripts/browser_audit.py <after.html>  --json reports/browser_after.json  --screenshot shots/after.png
+python scripts/score.py --before reports/before.json --after reports/after.json \
+  --browser-before reports/browser_before.json --browser-after reports/browser_after.json \
+  --visual reports/visual-review.json --independent reports/third_party.json \
+  --out reports/evaluation.md
 ```
 
-报告必须包含：总分与等级、6 个维度的前后分、硬门槛前后状态、逐条 `fail → pass` 的改动验证、以及**未覆盖项清单**（真实性能指标、主观美学、跨浏览器实测）。
+报告必须包含：① 静态合规分与 6 个维度前后分、硬门槛 G1–G5；② 真实浏览器测量与体验门槛 B1–B7；③ 视觉盲评（主观，不并入）；以及未覆盖项清单与反向指标。
 
-若有人工打分，用 `--manual manual.json` 传入，并在报告里明确标注为主观分。最后在报告末尾附上**完全可复现的命令序列**与输入文件哈希，使第三方能得到同一结论。
+**动效验收（页面含动画时强制）**：确认滚动揭示元素全部可见、`prefers-reduced-motion` 下内容一个都不能消失、动效只用 `transform`/`opacity` 因而 CLS 为 0、LCP 关键元素不被透明度淡入延迟。若发现 LCP 明显变慢，改用 transform-only 入场。
+
+**独立样本验证**：至少审计一个非本 rubric 构造的页面（本仓库用 `examples/third-party.html`），并披露 rubric 的类型偏差。
+
+若有人工打分，用 `--manual manual.json` 传入并标注为主观分。报告末尾附**完全可复现的命令序列**与输入文件哈希。
 
 ## 硬性规则
 
 - 每条结论附证据：数值、CSS 规则、或 `文件:行号`。无证据的结论直接删除。
 - 分数只能由 `scripts/score.py` 计算，禁止心算或手写总分。
 - 客观项与主观项分区呈现，禁止混算后宣称「客观评分」。
+- **禁止把静态合规分当作视觉质量结论**：三层分开报，自证样本必须声明；禁止把「分数提升」写成「效果提升」。见 `references/rubric.md` §0。
+- 动效必须可降级：`prefers-reduced-motion` 下内容不得隐藏，且要有超时兜底防止快速滚动导致内容永久不可见。
 - 不要为了凑分而违反 P0 的用户任务；分数服务于任务，不是反过来。
 - 引用外部规范时给出 `references/sources.md` 中的来源编号与 URL，不复制受版权保护的全文。
 - 报告里必须写明本技能的采样边界，禁止暗示「已学习所有网页设计」。
@@ -109,10 +122,15 @@ python scripts/score.py --before reports/before.json --after reports/after.json 
 | `references/principles.md` | 蒸馏后的 8 条原则：可执行判定、反例、落地手法、冲突仲裁 |
 | `references/rubric.md` | 6 维度评分锚点、权重、页面类型调整、硬门槛 |
 | `scripts/audit_page.py` | stdlib-only 静态 HTML 审计，输出 JSON 证据 |
-| `scripts/score.py` | 由审计 JSON 计算前后得分并生成 Markdown 报告 |
+| `scripts/browser_audit.py` | Playwright + Edge 真实渲染测量（LCP/CLS/渲染对比度/溢出/动效降级） |
+| `scripts/score.py` | 由审计 JSON 生成三层结论 Markdown 报告 |
 | `assets/tokens.css` | 可直接复用的浅色 token 体系 |
 | `assets/report-template.md` | 方案 + 评估报告模板 |
+| `examples/after-v1.html` | 第 1 轮反例：合规 100 分但视觉模板感 |
+| `examples/third-party.html` | 独立第三方样本（非本 rubric 构造） |
 | `examples/` | 完整实跑样例：before / after / 方案 / 评估报告 |
+| `reports/visual-review.json` | 视觉盲评记录（主观，不并入分数） |
+| `reports/screenshots/` | 真实浏览器全页截图 |
 | `research/` | 真实 GitHub API 采样原始数据，用于复核 star 数与时间 |
 
 ## 快速复现实跑样例
@@ -120,5 +138,10 @@ python scripts/score.py --before reports/before.json --after reports/after.json 
 ```bash
 python scripts/audit_page.py examples/before.html --json /tmp/before.json
 python scripts/audit_page.py examples/after.html  --json /tmp/after.json
-python scripts/score.py --before /tmp/before.json --after /tmp/after.json --out /tmp/evaluation.md
+python scripts/browser_audit.py examples/before.html --json /tmp/browser_before.json
+python scripts/browser_audit.py examples/after.html  --json /tmp/browser_after.json
+python scripts/score.py --before /tmp/before.json --after /tmp/after.json \
+  --browser-before /tmp/browser_before.json --browser-after /tmp/browser_after.json \
+  --visual reports/visual-review.json --independent reports/third_party.json \
+  --out /tmp/evaluation.md
 ```

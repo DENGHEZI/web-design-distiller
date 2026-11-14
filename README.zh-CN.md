@@ -52,19 +52,31 @@ cp -r web-design-distiller <项目>/.workbuddy/skills/
 python scripts/audit_page.py path/to/page.html --json before.json
 # 按 assets/report-template.md 实施改造
 python scripts/audit_page.py path/to/fixed.html --json after.json
-python scripts/score.py --before before.json --after after.json --type landing --out evaluation.md
+python scripts/browser_audit.py path/to/page.html  --json browser_before.json --screenshot shots/before.png
+python scripts/browser_audit.py path/to/fixed.html --json browser_after.json  --screenshot shots/after.png
+python scripts/score.py --before before.json --after after.json --type landing \
+  --browser-before browser_before.json --browser-after browser_after.json \
+  --visual reports/visual-review.json --independent reports/third_party.json \
+  --out evaluation.md
 ```
+
+`browser_audit.py` 需要 `pip install playwright` 与 Chromium 系浏览器（本机 Edge 用 `--channel msedge`），是三层结论报告的必要环节。
 
 追加外部样式：`--css site.css`。页面类型：`landing | app | docs | commerce`（权重不同）。
 
 ## 实跑验证结果（不是设想，是跑出来的）
 
-| 指标 | 改造前 | 改造后 |
-| --- | --- | --- |
-| 客观总分 | **16.4** | **100.0**（+83.6） |
-| 等级 | **FAIL**（5 条硬门槛全失败） | **A** |
-| fail 检查项 | 23 | 0 |
-| 六维度 | 0.0–1.0 分区间 | 全部 4.0 |
+| 层 | 指标 | 改造前 | 改造后 |
+| --- | --- | --- | --- |
+| ① 静态合规 | 合规分（0–100） | **16.4** | **100.0**（+83.6） |
+| ① 静态合规 | fail 检查项 | 23 | 0 |
+| ② 真实渲染 | 渲染后对比度失败 / 破图 | 12 / 4 | 0 / 0 |
+| ② 真实渲染 | CLS / LCP（本地单次） | 0 / 536ms | 0 / 608ms |
+| ③ 视觉盲评 | 主观分 0–10，**不并入** | 2.0 | 8.0 |
+
+**反自证（v2 重点）**：第 1 轮模板感版本与第 2 轮视觉重做版本在本 rubric 下**合规分同为 100.0**，视觉盲评却是 **5.0 / 10 与 8.0 / 10**。合规分对视觉质量**零区分度**，禁止用「分数提升」冒充「效果提升」。
+
+**动态设计（v3）**：19 个滚动揭示元素、首屏分层入场、数字计数、顶部滚动进度条、克制的 hover 微交互。LCP 关键元素只用 `transform` 不做透明度淡入，避免延迟最大内容绘制；CLS 保持 0；`prefers-reduced-motion` 下强制全部可见，由 `browser_audit.py` 实测验证。
 
 复现：
 
@@ -107,12 +119,11 @@ references/sources.md         采样方法、来源、偏差、版权
 references/principles.md      8 条原则 + 冲突仲裁
 references/rubric.md          评分锚点、权重、硬门槛
 scripts/audit_page.py         静态审计 → JSON 证据（stdlib-only）
-scripts/score.py              前后评分 → Markdown 报告
-assets/tokens.css             浅色克制 token（苹果风）
-assets/report-template.md     方案 + 报告模板
-examples/                     完整实跑样例
-research/                     GitHub API 原始数据
-reports/                      样例审计 JSON
+scripts/browser_audit.py      真实浏览器测量（Playwright + Edge，可选依赖）
+scripts/score.py              三层结论报告
+examples/after-v1.html        第 1 轮反例：合规 100 分但视觉模板感
+examples/third-party.html     独立第三方样本（非本 rubric 构造）
+reports/                      审计 JSON、截图、视觉盲评记录
 ```
 
 ## 版权与许可

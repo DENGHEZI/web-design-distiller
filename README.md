@@ -41,18 +41,37 @@ The skill triggers on: design review, UI audit, "score this page", "generate a r
 python scripts/audit_page.py path/to/page.html --json before.json
 # ... apply the plan from assets/report-template.md ...
 python scripts/audit_page.py path/to/fixed.html --json after.json
-python scripts/score.py --before before.json --after after.json --type landing --out evaluation.md
+python scripts/browser_audit.py path/to/page.html  --json browser_before.json --screenshot shots/before.png
+python scripts/browser_audit.py path/to/fixed.html --json browser_after.json  --screenshot shots/after.png
+python scripts/score.py --before before.json --after after.json --type landing \
+  --browser-before browser_before.json --browser-after browser_after.json \
+  --visual reports/visual-review.json --out evaluation.md
 ```
+
+`browser_audit.py` needs `pip install playwright` and a Chromium browser (system Edge works via `--channel msedge`). It is optional but **required** for the three-layer report.
 
 Extra stylesheets: `--css site.css`. Page types: `landing | app | docs | commerce` (they change the weights).
 
 ## Worked example (verified, not hypothetical)
 
-| | before | after |
-| --- | --- | --- |
-| Objective score | 16.4 | 100.0 |
-| Grade | FAIL (5 hard gates failed) | A |
-| Failed checks | 23 | 0 |
+| Layer | Metric | before | after |
+| --- | --- | --- | --- |
+| ① Static compliance | score 0–100 | 16.4 | 100.0 |
+| ① Static compliance | failed checks | 23 | 0 |
+| ② Real browser | rendered contrast failures | 12 | 0 |
+| ② Real browser | broken images | 4 | 0 |
+| ② Real browser | CLS / LCP (local, single run) | 0 / 536ms | 0 / 608ms |
+| ③ Visual review | subjective 0–10, **not merged** | 2.0 | 8.0 |
+
+> **Anti-self-certification (v2)**: the first-round page with obvious template feel and the
+> visually redesigned second-round page **both score 100.0** on this rubric, while blind
+> visual review gives **5.0/10 vs 8.0/10**. Static compliance has **zero discriminatory
+> power** for visual quality. Never present a score increase as proof the design got better.
+
+> **v3 motion**: 19 scroll-reveal elements, staggered hero entrance, count-up metric,
+> scroll progress bar and restrained hover micro-interactions. LCP-critical elements
+> animate with `transform` only (no opacity fade), so LCP is not delayed; CLS stays 0;
+> `prefers-reduced-motion` forces every element visible (verified by `browser_audit.py`).
 
 Reproduce it:
 
@@ -90,12 +109,12 @@ references/sources.md        sampling method, sources, bias, copyright
 references/principles.md     8 distilled principles + conflict arbitration
 references/rubric.md         scoring anchors, weights, hard gates
 scripts/audit_page.py        static HTML/CSS audit → JSON evidence
-scripts/score.py             before/after score → Markdown report
-assets/tokens.css            light, restrained design tokens
-assets/report-template.md    plan + report template
-examples/                    complete worked example
+scripts/browser_audit.py     Playwright + Edge real rendering measurement (optional dep)
+scripts/score.py             three-layer before/after report
+examples/after-v1.html       round-1 counter-example: 100/100 compliance, weak visuals
+examples/third-party.html    independent sample (not built to this rubric)
+reports/                     audit JSON, screenshots, visual review
 research/                    raw GitHub API snapshots (reproducibility)
-reports/                     generated audit JSON for the example
 ```
 
 ## Sources and license

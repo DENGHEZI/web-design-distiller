@@ -1,0 +1,184 @@
+{
+  "schema": "web-design-distiller/audit@1",
+  "tool_version": "1.0.0",
+  "generated_at": "2026-11-14T10:00:55+08:00",
+  "input": {
+    "path": "examples\\third-party.html",
+    "sha256": "25ddf2c883e0d1958ea971d279a7e4f0fd446724ee3db7db19dadabd4a62e484",
+    "bytes": 577
+  },
+  "css_sources": [
+    "third-party.html#style[0]"
+  ],
+  "page_type": "landing",
+  "background_rgb": [
+    255,
+    255,
+    255
+  ],
+  "checks": {
+    "lang_attr": {
+      "status": "pass",
+      "value": "en",
+      "evidence": "html:1"
+    },
+    "meta_viewport": {
+      "status": "pass",
+      "value": true,
+      "evidence": "meta[name=viewport]"
+    },
+    "title_present": {
+      "status": "pass",
+      "value": "Example Domain",
+      "evidence": "<title>"
+    },
+    "h1_count": {
+      "status": "fail",
+      "value": 0,
+      "evidence": "count(<h1>)"
+    },
+    "cta_count": {
+      "status": "pass",
+      "value": 0,
+      "evidence": "none"
+    },
+    "nav_items": {
+      "status": "pass",
+      "value": 0,
+      "evidence": "count(<nav> a)"
+    },
+    "img_alt_missing": {
+      "status": "pass",
+      "value": 0,
+      "evidence": "none"
+    },
+    "img_unsized": {
+      "status": "pass",
+      "value": 0,
+      "evidence": "none"
+    },
+    "focus_visible_defined": {
+      "status": "fail",
+      "value": false,
+      "evidence": ":focus-visible in CSS"
+    },
+    "outline_none_uncompensated": {
+      "status": "pass",
+      "value": 0,
+      "evidence": "none"
+    },
+    "contrast_failures": {
+      "status": "pass",
+      "value": 0,
+      "evidence": "none"
+    },
+    "contrast_min_ratio": {
+      "status": "pass",
+      "value": null,
+      "evidence": "min over 0 text-color declarations (per-rule background when declared; fallback bg=rgb(255, 255, 255))"
+    },
+    "spacing_violations": {
+      "status": "pass",
+      "value": 0,
+      "evidence": "none",
+      "note": "0 px spacing values inspected"
+    },
+    "type_scale_violations": {
+      "status": "pass",
+      "value": 0,
+      "evidence": "none",
+      "note": "0 font-size declarations inspected"
+    },
+    "heading_size_ratio": {
+      "status": "warn",
+      "value": null,
+      "evidence": "h1=Nonepx body=Nonepx",
+      "note": "not detectable from CSS"
+    },
+    "absolute_font_units": {
+      "status": "pass",
+      "value": 0,
+      "evidence": "0px / 0 font-size declarations"
+    },
+    "unique_colors": {
+      "status": "pass",
+      "value": 2,
+      "evidence": "#222, #eee"
+    },
+    "gradient_count": {
+      "status": "pass",
+      "value": 0,
+      "evidence": "count(*-gradient() in CSS)"
+    },
+    "inline_style_count": {
+      "status": "pass",
+      "value": 0,
+      "evidence": "none"
+    },
+    "max_width_defined": {
+      "status": "pass",
+      "value": true,
+      "evidence": "max-width in CSS"
+    },
+    "whitespace_token": {
+      "status": "fail",
+      "value": false,
+      "evidence": "--space* token definitions"
+    },
+    "external_resources": {
+      "status": "pass",
+      "value": 1,
+      "evidence": "html:1"
+    },
+    "css_imports": {
+      "status": "pass",
+      "value": 0,
+      "evidence": "@import + <link rel=stylesheet>"
+    },
+    "bytes_total": {
+      "status": "pass",
+      "value": 745,
+      "evidence": "html + provided css bytes"
+    },
+    "semantic_tags": {
+      "status": "fail",
+      "value": [],
+      "evidence": "landmark elements present"
+    },
+    "reduced_motion": {
+      "status": "fail",
+      "value": false,
+      "evidence": "@media (prefers-reduced-motion)"
+    },
+    "interaction_states": {
+      "status": "fail",
+      "value": {
+        "hover": false,
+        "focus": false,
+        "active": false,
+        "disabled": false
+      },
+      "evidence": "none"
+    },
+    "status_feedback": {
+      "status": "fail",
+      "value": [],
+      "evidence": "loading / error / empty state signals in markup"
+    }
+  },
+  "contrast_details": [],
+  "metrics": {
+    "rules": 2,
+    "imgs": 0,
+    "tags": 10,
+    "spacing_values": 0,
+    "font_size_values": 0,
+    "css_bytes": 168
+  },
+  "notes": [
+    "Real LCP/INP/CLS are NOT measured here; only static risk proxies.",
+    "Contrast is computed against a single body background; gradients/images/alpha need manual review.",
+    "Compiled CSS-in-JS and stylesheets not passed via --css are out of scope.",
+    "Aesthetic judgement, copy quality and conversion are human-only items."
+  ]
+}

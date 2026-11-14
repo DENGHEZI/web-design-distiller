@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!-- 按 web-design-distiller 的 P0–P4 改造后的页面（自包含、零外部依赖）。
+     本页 token 与 assets/tokens.css 同源；为便于单文件分发而内联。
+     审计命令：python scripts/audit_page.py examples/after.html --json reports/after.json -->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>棱镜文档 PrismDocs — 让团队知识有条理</title>
+<style>
+:root {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-soft: #fafafa;
+  --border: #e5e5ea;
+  --border-control: #767680;
+  --text: #1c1c1e;
+  --text-muted: #5f5f66;
+  --text-on-accent: #ffffff;
+  --accent: #0fa693;
+  --accent-strong: #0b7f72;
+  --gold: #8a6418;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --shadow-1: 0 1px 2px rgba(28, 28, 30, 0.05);
+  --shadow-2: 0 8px 24px rgba(28, 28, 30, 0.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+               "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+.container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+.prose { max-width: 65ch; }
+
+h1 { font-size: 3rem; line-height: 1.15; letter-spacing: -0.02em; font-weight: 700; margin: 0 0 16px; }
+h2 { font-size: 1.5rem; line-height: 1.25; letter-spacing: -0.01em; font-weight: 600; margin: 0 0 12px; }
+h3 { font-size: 1.125rem; line-height: 1.35; font-weight: 600; margin: 0 0 8px; }
+p  { font-size: 1rem; margin: 0 0 16px; }
+.meta { font-size: 0.875rem; color: var(--text-muted); }
+.eyebrow {
+  font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-muted); border-left: 3px solid var(--accent);
+  padding-left: 12px; margin: 0 0 24px;
+}
+
+header { border-bottom: 1px solid var(--border); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+.brand { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 1.125rem; }
+.brand-mark {
+  width: 20px; height: 20px; border-radius: 6px;
+  background: var(--accent); display: inline-block;
+}
+nav a { margin-left: 24px; text-decoration: none; color: var(--text-muted); font-size: 0.875rem; }
+nav a:hover { color: var(--text); }
+
+.hero { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+.hero h1 { max-width: 14ch; }
+.hero .lead { font-size: 1.125rem; color: var(--text-muted); max-width: 52ch; margin: 0 0 32px; }
+.hero-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 44px; padding: 8px 24px; border-radius: var(--radius-sm);
+  font-size: 1rem; font-weight: 600; text-decoration: none;
+  border: 1px solid transparent; cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease, transform 150ms ease;
+}
+.btn--primary { background: var(--accent-strong); color: var(--text-on-accent); }
+.btn--primary:hover { background: #096b60; }
+.btn--primary:active { transform: translateY(1px); }
+.btn--secondary { background: var(--surface); color: var(--text); border-color: var(--border-control); }
+.btn--secondary:hover { background: var(--surface-soft); }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+a { color: var(--accent-strong); }
+a:focus-visible, .btn:focus-visible, input:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px #0fa693;
+}
+input {
+  font-size: 1rem; color: var(--text); background: var(--surface);
+  border: 1px solid var(--border-control); border-radius: var(--radius-sm);
+  padding: 8px 12px; min-height: 44px;
+}
+input::placeholder { color: var(--text-muted); }
+
+.preview {
+  margin-top: 48px; border: 1px solid var(--border); border-radius: var(--radius-md);
+  box-shadow: var(--shadow-2); overflow: hidden;
+}
+.preview img { display: block; width: 100%; height: auto; }
+
+.metrics { display: flex; gap: 48px; padding: 48px 0; border-bottom: 1px solid var(--border); }
+.metric-value { font-size: 1.875rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
+.metric-label { font-size: 0.875rem; color: var(--text-muted); }
+
+section { padding: 64px 0; border-bottom: 1px solid var(--border); }
+.section-head { margin-bottom: 32px; }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow-1);
+}
+.card .icon-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-bottom: 16px; }
+.card p { font-size: 0.875rem; color: var(--text-muted); margin: 0; }
+.tag { font-size: 0.75rem; font-weight: 600; color: var(--gold); letter-spacing: 0.04em; }
+
+.status-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.status { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; }
+.status p { font-size: 0.875rem; color: var(--text-muted); margin: 0; }
+.status--error { border-left: 3px solid var(--gold); }
+
+footer { padding: 32px 0 64px; }
+footer p { font-size: 0.875rem; color: var(--text-muted); margin: 0; }
+
+@media (max-width: 720px) {
+  .cards, .status-grid { grid-template-columns: 1fr; }
+  .metrics { gap: 24px; flex-wrap: wrap; }
+  h1 { font-size: 1.875rem; }
+  .hero { padding: 48px 0 32px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <span class="brand"><span class="brand-mark" aria-hidden="true"></span>棱镜文档</span>
+    <nav aria-label="主导航">
+      <a href="#features">功能</a>
+      <a href="#status">状态反馈</a>
+      <a href="#docs">文档</a>
+      <a href="#start">开始使用</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">团队知识库</p>
+      <h1>让知识自己找到人</h1>
+      <p class="lead">把散落的文档、决策与流程收进一个地方。写得清楚，找得更快，团队不用再问「那个文件在哪」。</p>
+      <div class="hero-actions">
+        <a class="btn btn--primary" href="#start">免费开始使用</a>
+        <a class="btn btn--secondary" href="#docs">阅读产品文档</a>
+      </div>
+      <div class="preview">
+        <img alt="棱镜文档的空间目录与文档编辑界面示意图" width="960" height="420"
+             src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='960' height='420' viewBox='0 0 960 420'%3E%3Crect width='960' height='420' fill='%23fafafa'/%3E%3Crect x='40' y='40' width='220' height='340' rx='12' fill='%23ffffff' stroke='%23e5e5ea'/%3E%3Crect x='284' y='40' width='636' height='340' rx='12' fill='%23ffffff' stroke='%23e5e5ea'/%3E%3Crect x='64' y='72' width='140' height='12' rx='6' fill='%23e5e5ea'/%3E%3Crect x='64' y='104' width='172' height='12' rx='6' fill='%23e5e5ea'/%3E%3Crect x='64' y='136' width='120' height='12' rx='6' fill='%23e5e5ea'/%3E%3Crect x='312' y='72' width='280' height='20' rx='6' fill='%231c1c1e'/%3E%3Crect x='312' y='116' width='560' height='10' rx='5' fill='%23e5e5ea'/%3E%3Crect x='312' y='140' width='520' height='10' rx='5' fill='%23e5e5ea'/%3E%3Crect x='312' y='164' width='548' height='10' rx='5' fill='%23e5e5ea'/%3E%3Crect x='312' y='212' width='180' height='10' rx='5' fill='%230fa693'/%3E%3C/svg%3E">
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="metrics">
+      <div><div class="metric-value">2,000+</div><div class="metric-label">团队在使用</div></div>
+      <div><div class="metric-value">12 ms</div><div class="metric-label">全文检索响应</div></div>
+      <div><div class="metric-value">99.9%</div><div class="metric-label">服务可用性</div></div>
+    </div>
+  </div>
+
+  <section id="features">
+    <div class="container">
+      <div class="section-head">
+        <h2>把复杂留在系统里</h2>
+        <p class="meta">三个能力，覆盖知识从写入到被找到的全过程。</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="icon-dot" aria-hidden="true"></div>
+          <h3>实时协作</h3>
+          <p>多人同时编辑，改动即时可见，版本随时回溯。</p>
+        </article>
+        <article class="card">
+          <div class="icon-dot" aria-hidden="true"></div>
+          <h3>结构化空间</h3>
+          <p>用空间、目录与标签组织内容，不靠记忆找文件。</p>
+        </article>
+        <article class="card">
+          <div class="icon-dot" aria-hidden="true"></div>
+          <h3>精细权限</h3>
+          <p>按团队与项目授权，敏感内容只对应该看到的人可见。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="status">
+    <div class="container">
+      <div class="section-head">
+        <h2>每个状态都有交代</h2>
+        <p class="meta">加载、空状态与错误都给出明确文案和下一步动作。</p>
+      </div>
+      <div class="status-grid">
+        <div class="status"><span class="tag">加载中</span><p>正在加载最近文档，通常只需片刻。</p></div>
+        <div class="status"><span class="tag">空状态</span><p>这个空间还没有文档，创建第一篇开始记录。</p></div>
+        <div class="status status--error"><span class="tag">错误</span><p>加载失败，请检查网络后重试。</p>
+          <button class="btn btn--secondary" type="button">重试</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="start">
+    <div class="container">
+      <h2>从一份文档开始</h2>
+      <p class="meta">输入工作邮箱，我们会把入口发给你。</p>
+      <form class="hero-actions" onsubmit="return false">
+        <label for="email" class="meta">工作邮箱</label>
+        <input id="email" name="email" type="email" placeholder="name@company.com" autocomplete="email">
+        <button class="btn btn--secondary" type="submit">获取入口</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2026 棱镜文档 PrismDocs · 本页为 web-design-distiller 的演示样例，产品与数据均为虚构。</p>
+  </div>
+</footer>
+
+</body>
+</html>

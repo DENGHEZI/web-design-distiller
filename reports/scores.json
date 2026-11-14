@@ -1,7 +1,7 @@
 {
   "before": {
     "total": 16.4,
-    "grade": "FAIL",
+    "band": "FAIL",
     "dimensions": {
       "clarity": {
         "raw": 0.25,
@@ -80,7 +80,7 @@
   },
   "after": {
     "total": 100.0,
-    "grade": "A",
+    "band": "A",
     "dimensions": {
       "clarity": {
         "raw": 1.0,
@@ -131,7 +131,7 @@
       [
         "G1 对比度达标 (WCAG 1.4.3/1.4.11)",
         true,
-        "min over 16 text-color declarations (per-rule background when declared; fallback bg=rgb(255, 255, 255))"
+        "min over 39 text-color declarations (per-rule background when declared; fallback bg=rgb(255, 255, 255))"
       ],
       [
         "G2 图片 alt 完整",
@@ -146,7 +146,7 @@
       [
         "G4 主 CTA 不超过一个",
         true,
-        "html:171"
+        "html:356"
       ],
       [
         "G5 lang 与 viewport 齐备",
@@ -156,5 +156,42 @@
     ],
     "gates_ok": true,
     "missing": []
-  }
+  },
+  "browser_gates_after": [
+    [
+      "B1 渲染后文字对比度达标",
+      true,
+      "checked=61 failures=0 min_ratio=4.89"
+    ],
+    [
+      "B2 无破图",
+      true,
+      "brokenImages=0"
+    ],
+    [
+      "B3 无横向溢出",
+      true,
+      "scrollWidth=1440 / viewport=1440"
+    ],
+    [
+      "B4 CLS ≤ 0.1（本地）",
+      true,
+      "CLS=0"
+    ],
+    [
+      "B5 LCP ≤ 2500ms（本地）",
+      true,
+      "LCP=608ms"
+    ],
+    [
+      "B6 动效降级后内容仍可见",
+      true,
+      "reduced-motion min opacity=1"
+    ],
+    [
+      "B7 滚动后揭示元素全部可见",
+      true,
+      "reveals=19 min opacity=1"
+    ]
+  ]
 }

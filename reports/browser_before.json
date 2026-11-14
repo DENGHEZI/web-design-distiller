@@ -1,0 +1,217 @@
+{
+  "schema": "web-design-distiller/browser-audit@1",
+  "tool_version": "1.0.0",
+  "generated_at": "2026-11-14T10:03:04+08:00",
+  "input": {
+    "path": "examples\\before.html",
+    "sha256": "2a6ba6e1b6a1da39ca8362fed075b8d7b6cb24a7371eb18cb0938f53c283e882"
+  },
+  "engine": "msedge",
+  "viewport_width": 1440,
+  "settle_ms": 1800,
+  "performance": {
+    "lcp_ms": 536,
+    "fcp_ms": 536,
+    "cls": 0,
+    "lcp_element": "p",
+    "lcp_text": "一站式团队知识库，让信息自己找到人",
+    "good_thresholds": {
+      "lcp_ms": 2500,
+      "cls": 0.1,
+      "note": "INP not measurable without real interactions"
+    }
+  },
+  "rendered_contrast": {
+    "checked": 25,
+    "failures": 12,
+    "bad": [
+      {
+        "tag": "h1",
+        "cls": "",
+        "text": "棱镜文档",
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(255, 255, 255)",
+        "font_px": 27,
+        "ratio": 1,
+        "required": 3,
+        "pass": false
+      },
+      {
+        "tag": "p",
+        "cls": "sub",
+        "text": "一站式团队知识库，让信息自己找到人",
+        "color": "rgb(221, 221, 221)",
+        "background": "rgb(255, 255, 255)",
+        "font_px": 19,
+        "ratio": 1.36,
+        "required": 4.5,
+        "pass": false
+      },
+      {
+        "tag": "p",
+        "cls": "muted",
+        "text": "支持多人协作、版本回溯与全文检索",
+        "color": "rgb(170, 170, 170)",
+        "background": "rgb(255, 255, 255)",
+        "font_px": 15,
+        "ratio": 2.32,
+        "required": 4.5,
+        "pass": false
+      },
+      {
+        "tag": "a",
+        "cls": "btn-primary",
+        "text": "立即开始",
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(255, 255, 255)",
+        "font_px": 15,
+        "ratio": 1,
+        "required": 4.5,
+        "pass": false
+      },
+      {
+        "tag": "a",
+        "cls": "btn-primary",
+        "text": "免费试用",
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(255, 255, 255)",
+        "font_px": 15,
+        "ratio": 1,
+        "required": 4.5,
+        "pass": false
+      },
+      {
+        "tag": "a",
+        "cls": "btn-primary",
+        "text": "预约演示",
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(255, 255, 255)",
+        "font_px": 15,
+        "ratio": 1,
+        "required": 4.5,
+        "pass": false
+      },
+      {
+        "tag": "p",
+        "cls": "faint",
+        "text": "和同事同时编辑，改动即时可见。",
+        "color": "rgb(204, 204, 204)",
+        "background": "rgb(255, 255, 255)",
+        "font_px": 15,
+        "ratio": 1.61,
+        "required": 4.5,
+        "pass": false
+      },
+      {
+        "tag": "p",
+        "cls": "faint",
+        "text": "用空间、目录与标签组织内容。",
+        "color": "rgb(204, 204, 204)",
+        "background": "rgb(255, 255, 255)",
+        "font_px": 15,
+        "ratio": 1.61,
+        "required": 4.5,
+        "pass": false
+      },
+      {
+        "tag": "p",
+        "cls": "faint",
+        "text": "毫秒级找到任何一份文档。",
+        "color": "rgb(204, 204, 204)",
+        "background": "rgb(255, 255, 255)",
+        "font_px": 15,
+        "ratio": 1.61,
+        "required": 4.5,
+        "pass": false
+      },
+      {
+        "tag": "p",
+        "cls": "faint",
+        "text": "按团队与项目精细授权。",
+        "color": "rgb(204, 204, 204)",
+        "background": "rgb(255, 255, 255)",
+        "font_px": 15,
+        "ratio": 1.61,
+        "required": 4.5,
+        "pass": false
+      },
+      {
+        "tag": "p",
+        "cls": "muted",
+        "text": "已有 2,000+ 团队加入",
+        "color": "rgb(170, 170, 170)",
+        "background": "rgb(255, 255, 255)",
+        "font_px": 15,
+        "ratio": 2.32,
+        "required": 4.5,
+        "pass": false
+      },
+      {
+        "tag": "div",
+        "cls": "footer",
+        "text": "© 2026 棱镜文档 · 保留所有权利",
+        "color": "rgb(153, 153, 153)",
+        "background": "rgb(255, 255, 255)",
+        "font_px": 15,
+        "ratio": 2.85,
+        "required": 4.5,
+        "pass": false
+      }
+    ],
+    "min_ratio": 1
+  },
+  "layout": {
+    "viewportWidth": 1440,
+    "scrollWidth": 1440,
+    "scrollHeight": 900,
+    "horizontalOverflow": false,
+    "focusableCount": 11,
+    "images": [
+      {
+        "src": "https://pics.example.com/collab.png",
+        "hasAlt": false,
+        "hasSize": false,
+        "complete": true,
+        "naturalWidth": 0
+      },
+      {
+        "src": "https://pics.example.com/space.png",
+        "hasAlt": false,
+        "hasSize": false,
+        "complete": true,
+        "naturalWidth": 0
+      },
+      {
+        "src": "https://pics.example.com/search.png",
+        "hasAlt": false,
+        "hasSize": false,
+        "complete": true,
+        "naturalWidth": 0
+      },
+      {
+        "src": "https://pics.example.com/acl.png",
+        "hasAlt": false,
+        "hasSize": false,
+        "complete": true,
+        "naturalWidth": 0
+      }
+    ],
+    "brokenImages": 4,
+    "fontStatus": "loaded",
+    "h1Count": 2,
+    "landmarks": 1,
+    "bodyFont": "Arial, sans-serif"
+  },
+  "motion": {
+    "reveal_count": 0,
+    "normal_min_opacity_after_scroll": null,
+    "normal_all_visible": true,
+    "reduced_motion_min_opacity": null,
+    "reduced_motion_ok": true
+  },
+  "notes": [
+    "Local file:// measurement, not CrUX/RUM field data; not the 75th percentile across devices.",
+    "INP requires real user interactions and is NOT measured here.",
+    "Contrast is computed on rendered computed styles; gradients/images behind text still need manual review."
+  ]
+}
