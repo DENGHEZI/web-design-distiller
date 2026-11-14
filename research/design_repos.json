@@ -1,0 +1,134 @@
+{
+  "fetched_at": "2026-11-14",
+  "source": "GitHub REST /repos",
+  "items": [
+    {
+      "repo": "shadcn-ui/ui",
+      "stars": 128131,
+      "description": "Composable, accessible components with thoughtful defaults. Build your own component library with code you can customize, extend, and make your own.",
+      "topics": [
+        "ai",
+        "base-ui",
+        "components",
+        "gen-ui",
+        "generative-ai",
+        "generative-ui"
+      ]
+    },
+    {
+      "repo": "tailwindlabs/tailwindcss",
+      "stars": 98598,
+      "description": "A utility-first CSS framework for rapid UI development.",
+      "topics": [
+        "css",
+        "css-framework",
+        "functional-css",
+        "postcss",
+        "responsive",
+        "tailwindcss"
+      ]
+    },
+    {
+      "repo": "ant-design/ant-design",
+      "stars": 100195,
+      "description": "An enterprise-class UI design language and React UI library",
+      "topics": [
+        "ant-design",
+        "antd",
+        "design-systems",
+        "react",
+        "typescript",
+        "ui-kit"
+      ]
+    },
+    {
+      "repo": "mui/material-ui",
+      "stars": 99345,
+      "description": "Material UI: Comprehensive React component library that implements Google's Material Design. Free forever.",
+      "topics": [
+        "design-system",
+        "material-design",
+        "material-ui",
+        "react",
+        "react-components"
+      ]
+    },
+    {
+      "repo": "vercel/next.js",
+      "stars": 143506,
+      "description": "The React Framework",
+      "topics": [
+        "blog",
+        "browser",
+        "compiler",
+        "components",
+        "hybrid",
+        "nextjs"
+      ]
+    },
+    {
+      "repo": "radix-ui/primitives",
+      "stars": 19499,
+      "description": "Radix Primitives is an open-source UI component library for building high-quality, accessible design systems and web apps. Maintained by @workos.",
+      "topics": [
+        "accessibility",
+        "colors",
+        "component-library",
+        "design-systems",
+        "radix-ui",
+        "react"
+      ]
+    },
+    {
+      "repo": "alphagov/govuk-frontend",
+      "stars": 1483,
+      "description": "GOV.UK Frontend contains the code you need to start building a user interface for government platforms and services.",
+      "topics": [
+        "govuk-design-system",
+        "govuk-design-system-team",
+        "govuk-frontend"
+      ]
+    },
+    {
+      "repo": "chakra-ui/chakra-ui",
+      "stars": 40726,
+      "description": "Chakra UI is a component system for building SaaS products with speed ⚡️",
+      "topics": [
+        "a11y",
+        "accessible",
+        "ark-ui",
+        "chakra-ui",
+        "component",
+        "css-in-js"
+      ]
+    },
+    {
+      "repo": "vuejs/core",
+      "stars": 55014,
+      "description": "🖖 Vue.js is a progressive, incrementally-adoptable JavaScript framework for building UI on the web.",
+      "topics": []
+    },
+    {
+      "repo": "microsoft/vscode",
+      "stars": 195350,
+      "description": "Visual Studio Code",
+      "topics": [
+        "editor",
+        "electron",
+        "microsoft",
+        "typescript",
+        "visual-studio-code"
+      ]
+    },
+    {
+      "repo": "bradtraversy/design-resources-for-developers",
+      "stars": 67398,
+      "description": "Curated list of design and UI resources from stock photos, web templates, CSS frameworks, UI libraries, tools and much more",
+      "topics": []
+    },
+    {
+      "repo": "lawsofux/lawsofux",
+      "error": "HTTP Error 404: Not Found"
+    }
+  ]
+}

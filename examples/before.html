@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!-- 故意做错的对照页：用于演示 web-design-distiller 的审计与改造流程。
+     请勿把本页当作设计参考。改造后版本见 after.html。 -->
+<html>
+<head>
+<meta charset="utf-8">
+<title>棱镜文档 PrismDocs - 让团队知识有条理</title>
+<link rel="stylesheet" href="https://fonts.example.com/fancy.css">
+<link rel="stylesheet" href="https://cdn.example.com/theme.css">
+<script src="https://cdn.example.com/anim.js"></script>
+<style>
+@import url("https://fonts.example.com/more.css");
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; font-size: 15px; color: #333333; background: #ffffff; }
+.nav { padding: 13px; background: #222222; }
+.nav a { color: #999999; margin-right: 17px; font-size: 15px; text-decoration: none; }
+.hero { padding: 13px 17px; text-align: center; color: #ffffff;
+        background: linear-gradient(135deg, #7b2ff7, #f107a3); }
+.hero h1 { font-size: 27px; margin: 0 0 13px; }
+.sub { font-size: 19px; color: #dddddd; }
+.muted { color: #aaaaaa; font-size: 15px; }
+.faint { color: #cccccc; }
+.btn-primary { display: inline-block; padding: 13px 22px; margin: 8px;
+               background: linear-gradient(90deg, #ff7a00, #ff2e63); color: #ffffff;
+               font-size: 15px; font-weight: bold; border-radius: 6px; text-decoration: none; }
+.btn-primary:hover { opacity: .8; }
+a { outline: none; color: #aaaaaa; }
+.card { padding: 17px; margin: 22px; border: 1px solid #eeeeee;
+        background: linear-gradient(180deg, #fff6e5, #ffffff); }
+.card h2 { font-size: 19px; color: #555555; }
+.grid { display: flex; gap: 13px; }
+.item { padding: 22px 17px; }
+.footer { padding: 13px; color: #999999; }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="#">首页</a><a href="#">产品</a><a href="#">模板</a><a href="#">价格</a>
+  <a href="#">客户</a><a href="#">博客</a><a href="#">帮助</a><a href="#">关于</a>
+</nav>
+
+<div class="hero">
+  <h1>棱镜文档</h1>
+  <p class="sub">一站式团队知识库，让信息自己找到人</p>
+  <p class="muted">支持多人协作、版本回溯与全文检索</p>
+  <a class="btn-primary" href="#">立即开始</a>
+  <a class="btn-primary" href="#">免费试用</a>
+  <a class="btn-primary" href="#">预约演示</a>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <h2>实时协作</h2>
+    <p class="faint">和同事同时编辑，改动即时可见。</p>
+    <img src="https://pics.example.com/collab.png">
+  </div>
+  <div class="card">
+    <h2>结构化知识</h2>
+    <p class="faint">用空间、目录与标签组织内容。</p>
+    <img src="https://pics.example.com/space.png">
+  </div>
+  <div class="card item" style="padding:13px;color:#aaaaaa">
+    <h2>全文检索</h2>
+    <p class="faint">毫秒级找到任何一份文档。</p>
+    <img src="https://pics.example.com/search.png">
+  </div>
+  <div class="card" style="padding:17px">
+    <h2>权限管理</h2>
+    <p class="faint">按团队与项目精细授权。</p>
+    <img src="https://pics.example.com/acl.png" style="width:200px">
+  </div>
+</div>
+
+<h1>他们都在用</h1>
+<div class="card" style="margin:22px"><p class="muted">已有 2,000+ 团队加入</p></div>
+<div class="footer">© 2026 棱镜文档 · 保留所有权利</div>
+</body>
+</html>

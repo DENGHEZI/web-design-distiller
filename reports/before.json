@@ -1,0 +1,288 @@
+{
+  "schema": "web-design-distiller/audit@1",
+  "tool_version": "1.0.0",
+  "generated_at": "2026-11-14T09:31:16+08:00",
+  "input": {
+    "path": "examples\\before.html",
+    "sha256": "2a6ba6e1b6a1da39ca8362fed075b8d7b6cb24a7371eb18cb0938f53c283e882",
+    "bytes": 3286
+  },
+  "css_sources": [
+    "before.html#style[0]"
+  ],
+  "page_type": "landing",
+  "background_rgb": [
+    255,
+    255,
+    255
+  ],
+  "checks": {
+    "lang_attr": {
+      "status": "fail",
+      "value": "",
+      "evidence": "html:4"
+    },
+    "meta_viewport": {
+      "status": "fail",
+      "value": false,
+      "evidence": "meta[name=viewport]"
+    },
+    "title_present": {
+      "status": "pass",
+      "value": "棱镜文档 PrismDocs - 让团队知识有条理",
+      "evidence": "<title>"
+    },
+    "h1_count": {
+      "status": "fail",
+      "value": 2,
+      "evidence": "count(<h1>)"
+    },
+    "cta_count": {
+      "status": "fail",
+      "value": 3,
+      "evidence": "html:46, html:47, html:48"
+    },
+    "nav_items": {
+      "status": "fail",
+      "value": 8,
+      "evidence": "count(<nav> a)"
+    },
+    "img_alt_missing": {
+      "status": "fail",
+      "value": 4,
+      "evidence": "html:55, html:60, html:65, html:70"
+    },
+    "img_unsized": {
+      "status": "fail",
+      "value": 4,
+      "evidence": "html:55, html:60, html:65, html:70"
+    },
+    "focus_visible_defined": {
+      "status": "fail",
+      "value": false,
+      "evidence": ":focus-visible in CSS"
+    },
+    "outline_none_uncompensated": {
+      "status": "fail",
+      "value": 1,
+      "evidence": "combined:16 a"
+    },
+    "contrast_failures": {
+      "status": "fail",
+      "value": 8,
+      "evidence": "L5 .nav a #999999 2.85:1 < 4.5:1; L6 .hero #ffffff 1.0:1 < 4.5:1; L9 .sub #dddddd 1.36:1 < 4.5:1; L10 .muted #aaaaaa 2.32:1 < 4.5:1; L11 .faint #cccccc 1.61:1 < 4.5:1; L12 .btn-primary #ffffff 1.0:1 < 4.5:1; L16 a #aaaaaa 2.32:1 < 4.5:1; L22 .footer #999999 2.85:1 < 4.5:1",
+      "note": "gradient backgrounds present; contrast against them needs manual review"
+    },
+    "contrast_min_ratio": {
+      "status": "fail",
+      "value": 1.0,
+      "evidence": "min over 10 text-color declarations (per-rule background when declared; fallback bg=rgb(255, 255, 255))"
+    },
+    "spacing_violations": {
+      "status": "fail",
+      "value": 13,
+      "evidence": "L4 padding:13px; L5 margin-right:17px; L6 padding:13px; L6 padding:17px; L8 margin:13px; L12 padding:13px; L12 padding:22px; L17 padding:17px",
+      "note": "14 px spacing values inspected"
+    },
+    "type_scale_violations": {
+      "status": "fail",
+      "value": 7,
+      "evidence": "L3 body 15px(15px); L5 .nav a 15px(15px); L8 .hero h1 27px(27px); L9 .sub 19px(19px); L10 .muted 15px(15px); L12 .btn-primary 15px(15px); L19 .card h2 19px(19px)",
+      "note": "7 font-size declarations inspected"
+    },
+    "heading_size_ratio": {
+      "status": "pass",
+      "value": 1.8,
+      "evidence": "h1=27.0px body=15.0px"
+    },
+    "absolute_font_units": {
+      "status": "pass",
+      "value": 0.0,
+      "evidence": "0px / 7 font-size declarations"
+    },
+    "unique_colors": {
+      "status": "warn",
+      "value": 14,
+      "evidence": "#222222, #333333, #555555, #7b2ff7, #999999, #aaaaaa, #cccccc, #dddddd, #eeeeee, #f107a3, #ff2e63, #ff7a00, #fff6e5, #ffffff"
+    },
+    "gradient_count": {
+      "status": "fail",
+      "value": 3,
+      "evidence": "count(*-gradient() in CSS)"
+    },
+    "inline_style_count": {
+      "status": "fail",
+      "value": 4,
+      "evidence": "html:62, html:67, html:70, html:75"
+    },
+    "max_width_defined": {
+      "status": "fail",
+      "value": false,
+      "evidence": "max-width in CSS"
+    },
+    "whitespace_token": {
+      "status": "fail",
+      "value": false,
+      "evidence": "--space* token definitions"
+    },
+    "external_resources": {
+      "status": "fail",
+      "value": 7,
+      "evidence": "html:8, html:9, html:10, html:55, html:60, html:65, html:70"
+    },
+    "css_imports": {
+      "status": "fail",
+      "value": 3,
+      "evidence": "@import + <link rel=stylesheet>"
+    },
+    "bytes_total": {
+      "status": "pass",
+      "value": 4505,
+      "evidence": "html + provided css bytes"
+    },
+    "semantic_tags": {
+      "status": "fail",
+      "value": [
+        "nav"
+      ],
+      "evidence": "landmark elements present"
+    },
+    "reduced_motion": {
+      "status": "fail",
+      "value": false,
+      "evidence": "@media (prefers-reduced-motion)"
+    },
+    "interaction_states": {
+      "status": "fail",
+      "value": {
+        "hover": true,
+        "focus": false,
+        "active": false,
+        "disabled": false
+      },
+      "evidence": "hover"
+    },
+    "status_feedback": {
+      "status": "fail",
+      "value": [],
+      "evidence": "loading / error / empty state signals in markup"
+    }
+  },
+  "contrast_details": [
+    {
+      "line": 3,
+      "selector": "body",
+      "color": "#333333",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 15.0,
+      "ratio": 12.63,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 5,
+      "selector": ".nav a",
+      "color": "#999999",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 15.0,
+      "ratio": 2.85,
+      "required": 4.5,
+      "pass": false
+    },
+    {
+      "line": 6,
+      "selector": ".hero",
+      "color": "#ffffff",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 16.0,
+      "ratio": 1.0,
+      "required": 4.5,
+      "pass": false
+    },
+    {
+      "line": 9,
+      "selector": ".sub",
+      "color": "#dddddd",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 19.0,
+      "ratio": 1.36,
+      "required": 4.5,
+      "pass": false
+    },
+    {
+      "line": 10,
+      "selector": ".muted",
+      "color": "#aaaaaa",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 15.0,
+      "ratio": 2.32,
+      "required": 4.5,
+      "pass": false
+    },
+    {
+      "line": 11,
+      "selector": ".faint",
+      "color": "#cccccc",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 16.0,
+      "ratio": 1.61,
+      "required": 4.5,
+      "pass": false
+    },
+    {
+      "line": 12,
+      "selector": ".btn-primary",
+      "color": "#ffffff",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 15.0,
+      "ratio": 1.0,
+      "required": 4.5,
+      "pass": false
+    },
+    {
+      "line": 16,
+      "selector": "a",
+      "color": "#aaaaaa",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 16.0,
+      "ratio": 2.32,
+      "required": 4.5,
+      "pass": false
+    },
+    {
+      "line": 19,
+      "selector": ".card h2",
+      "color": "#555555",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 19.0,
+      "ratio": 7.46,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 22,
+      "selector": ".footer",
+      "color": "#999999",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 16.0,
+      "ratio": 2.85,
+      "required": 4.5,
+      "pass": false
+    }
+  ],
+  "metrics": {
+    "rules": 16,
+    "imgs": 4,
+    "tags": 46,
+    "spacing_values": 14,
+    "font_size_values": 7,
+    "css_bytes": 1219
+  },
+  "notes": [
+    "gradient backgrounds present; contrast against them needs manual review",
+    "Real LCP/INP/CLS are NOT measured here; only static risk proxies.",
+    "Contrast is computed against a single body background; gradients/images/alpha need manual review.",
+    "Compiled CSS-in-JS and stylesheets not passed via --css are out of scope.",
+    "Aesthetic judgement, copy quality and conversion are human-only items."
+  ]
+}

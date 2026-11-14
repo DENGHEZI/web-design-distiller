@@ -1,0 +1,160 @@
+{
+  "before": {
+    "total": 16.4,
+    "grade": "FAIL",
+    "dimensions": {
+      "clarity": {
+        "raw": 0.25,
+        "score": 1.0,
+        "weighted": 5.0,
+        "max": 20
+      },
+      "system": {
+        "raw": 0.125,
+        "score": 0.5,
+        "weighted": 2.5,
+        "max": 20
+      },
+      "restraint": {
+        "raw": 0.125,
+        "score": 0.5,
+        "weighted": 1.88,
+        "max": 15
+      },
+      "a11y": {
+        "raw": 0.2,
+        "score": 0.8,
+        "weighted": 4.0,
+        "max": 20
+      },
+      "perf": {
+        "raw": 0.2,
+        "score": 0.8,
+        "weighted": 3.0,
+        "max": 15
+      },
+      "convention": {
+        "raw": 0.0,
+        "score": 0.0,
+        "weighted": 0.0,
+        "max": 10
+      }
+    },
+    "weights": {
+      "clarity": 20,
+      "system": 20,
+      "restraint": 15,
+      "a11y": 20,
+      "perf": 15,
+      "convention": 10
+    },
+    "gates": [
+      [
+        "G1 对比度达标 (WCAG 1.4.3/1.4.11)",
+        false,
+        "min over 10 text-color declarations (per-rule background when declared; fallback bg=rgb(255, 255, 255))（渐变/半透明背景需人工复核）"
+      ],
+      [
+        "G2 图片 alt 完整",
+        false,
+        "html:55, html:60, html:65, html:70"
+      ],
+      [
+        "G3 键盘焦点可见且未被抹除",
+        false,
+        "focus-visible=fail, outline-none=fail"
+      ],
+      [
+        "G4 主 CTA 不超过一个",
+        false,
+        "html:46, html:47, html:48"
+      ],
+      [
+        "G5 lang 与 viewport 齐备",
+        false,
+        "lang=fail, viewport=fail"
+      ]
+    ],
+    "gates_ok": false,
+    "missing": []
+  },
+  "after": {
+    "total": 100.0,
+    "grade": "A",
+    "dimensions": {
+      "clarity": {
+        "raw": 1.0,
+        "score": 4.0,
+        "weighted": 20.0,
+        "max": 20
+      },
+      "system": {
+        "raw": 1.0,
+        "score": 4.0,
+        "weighted": 20.0,
+        "max": 20
+      },
+      "restraint": {
+        "raw": 1.0,
+        "score": 4.0,
+        "weighted": 15.0,
+        "max": 15
+      },
+      "a11y": {
+        "raw": 1.0,
+        "score": 4.0,
+        "weighted": 20.0,
+        "max": 20
+      },
+      "perf": {
+        "raw": 1.0,
+        "score": 4.0,
+        "weighted": 15.0,
+        "max": 15
+      },
+      "convention": {
+        "raw": 1.0,
+        "score": 4.0,
+        "weighted": 10.0,
+        "max": 10
+      }
+    },
+    "weights": {
+      "clarity": 20,
+      "system": 20,
+      "restraint": 15,
+      "a11y": 20,
+      "perf": 15,
+      "convention": 10
+    },
+    "gates": [
+      [
+        "G1 对比度达标 (WCAG 1.4.3/1.4.11)",
+        true,
+        "min over 16 text-color declarations (per-rule background when declared; fallback bg=rgb(255, 255, 255))"
+      ],
+      [
+        "G2 图片 alt 完整",
+        true,
+        "none"
+      ],
+      [
+        "G3 键盘焦点可见且未被抹除",
+        true,
+        "focus-visible=pass, outline-none=pass"
+      ],
+      [
+        "G4 主 CTA 不超过一个",
+        true,
+        "html:171"
+      ],
+      [
+        "G5 lang 与 viewport 齐备",
+        true,
+        "lang=pass, viewport=pass"
+      ]
+    ],
+    "gates_ok": true,
+    "missing": []
+  }
+}
