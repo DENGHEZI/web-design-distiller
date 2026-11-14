@@ -19,6 +19,7 @@ import argparse
 import datetime
 import hashlib
 import json
+import statistics
 import sys
 from pathlib import Path
 
@@ -139,7 +140,8 @@ LAYOUT_JS = r"""
 """
 
 
-def run(html: Path, channel: str, wait_ms: int, screenshot: Path | None, viewport_w: int):
+def run(html: Path, channel: str, wait_ms: int, screenshot: Path | None,
+        viewport_w: int, repeat: int = 3):
     try:
         from playwright.sync_api import sync_playwright
     except ImportError:
@@ -152,23 +154,36 @@ def run(html: Path, channel: str, wait_ms: int, screenshot: Path | None, viewpor
         except Exception:
             browser = p.chromium.launch(headless=True)
             engine = "bundled-chromium"
-        ctx = browser.new_context(viewport={"width": viewport_w, "height": 900}, device_scale_factor=1)
-        ctx.add_init_script(INIT_SCRIPT)
-        page = ctx.new_page()
-        page.goto(html.resolve().as_uri(), wait_until="load")
-        page.wait_for_timeout(200)
-        # Scroll once through the document to fire IntersectionObserver reveals.
-        # Without this, a full-page screenshot would capture invisible sections.
-        page.evaluate("""async () => {
+        scroll_js = """async () => {
           const h = document.documentElement.scrollHeight;
           for (let y = 0; y < h; y += 400) {
             window.scrollTo({ top: y, behavior: 'instant' });
             await new Promise(r => setTimeout(r, 70));
           }
           window.scrollTo({ top: 0, behavior: 'instant' });
-        }""")
-        page.wait_for_timeout(wait_ms)
-        perf = page.evaluate("window.__wdd")
+        }"""
+        # Each sample uses a FRESH browser context: reloading the same page makes
+        # cached LCP collapse to ~30ms and would fabricate a performance gain.
+        # The headline value is the first cold load; all samples are kept so the
+        # local variance is visible rather than hidden behind one lucky number.
+        samples = []
+        n = max(1, repeat)
+        for i in range(n):
+            ctx = browser.new_context(viewport={"width": viewport_w, "height": 900},
+                                      device_scale_factor=1)
+            ctx.add_init_script(INIT_SCRIPT)
+            pg = ctx.new_page()
+            pg.goto(html.resolve().as_uri(), wait_until="load")
+            pg.wait_for_timeout(200)
+            # Scroll to fire IntersectionObserver reveals; identical for every run.
+            pg.evaluate(scroll_js)
+            pg.wait_for_timeout(wait_ms)
+            samples.append(pg.evaluate("window.__wdd"))
+            if i == n - 1:
+                page = pg          # keep the last context alive for DOM + screenshot
+            else:
+                ctx.close()
+        perf = samples[-1]
         contrast = page.evaluate(CONTRAST_JS)
         layout = page.evaluate(LAYOUT_JS)
         motion = {"reveal_count": 0}
@@ -205,10 +220,15 @@ def run(html: Path, channel: str, wait_ms: int, screenshot: Path | None, viewpor
         "engine": engine,
         "viewport_width": viewport_w,
         "settle_ms": wait_ms,
+        "repeat": len(samples),
         "performance": {
-            "lcp_ms": round(perf.get("lcp", 0), 1),
-            "fcp_ms": round(perf.get("fcp", 0), 1),
-            "cls": round(perf.get("cls", 0), 4),
+            "lcp_ms": round(samples[0].get("lcp", 0), 1),
+            "fcp_ms": round(samples[0].get("fcp", 0), 1),
+            "lcp_median_ms": round(statistics.median(s.get("lcp", 0) for s in samples), 1),
+            "cls": round(max(s.get("cls", 0) for s in samples), 4),
+            "lcp_samples_ms": [round(s.get("lcp", 0), 1) for s in samples],
+            "lcp_min_ms": round(min(s.get("lcp", 0) for s in samples), 1),
+            "lcp_max_ms": round(max(s.get("lcp", 0) for s in samples), 1),
             "lcp_element": perf.get("lcpTag", ""),
             "lcp_text": perf.get("lcpText", "")[:60],
             "good_thresholds": {"lcp_ms": 2500, "cls": 0.1, "note": "INP not measurable without real interactions"},
@@ -218,6 +238,7 @@ def run(html: Path, channel: str, wait_ms: int, screenshot: Path | None, viewpor
         "motion": motion,
         "notes": [
             "Local file:// measurement, not CrUX/RUM field data; not the 75th percentile across devices.",
+            "LCP/FCP headline values come from the FIRST cold load in a fresh context; N repeated loads are kept only to expose local variance (cached reloads are much faster and must not be used to claim a gain). CLS uses the worst run.",
             "INP requires real user interactions and is NOT measured here.",
             "Contrast is computed on rendered computed styles; gradients/images behind text still need manual review.",
         ],
@@ -229,6 +250,8 @@ def main():
     ap.add_argument("html", type=Path)
     ap.add_argument("--channel", default="msedge")
     ap.add_argument("--wait", type=int, default=1800)
+    ap.add_argument("--repeat", type=int, default=3,
+                    help="repeat full page loads and use median LCP/FCP")
     ap.add_argument("--width", type=int, default=1440)
     ap.add_argument("--screenshot", type=Path)
     ap.add_argument("--json", type=Path)
@@ -236,13 +259,15 @@ def main():
     if not args.html.is_file():
         print(f"error: file not found: {args.html}", file=sys.stderr)
         return 2
-    r = run(args.html, args.channel, args.wait, args.screenshot, args.width)
+    r = run(args.html, args.channel, args.wait, args.screenshot, args.width, args.repeat)
     if args.json:
         args.json.parent.mkdir(parents=True, exist_ok=True)
         args.json.write_text(json.dumps(r, ensure_ascii=False, indent=2), encoding="utf-8")
     p, c, l = r["performance"], r["rendered_contrast"], r["layout"]
     print(f"browser {r['input']['path']}  engine={r['engine']}  sha256={r['input']['sha256'][:12]}")
-    print(f"  LCP={p['lcp_ms']}ms  FCP={p['fcp_ms']}ms  CLS={p['cls']}  "
+    print(f"  LCP={p['lcp_ms']}ms (first cold load; {r['repeat']} fresh contexts, "
+          f"range {p['lcp_min_ms']}–{p['lcp_max_ms']}ms, median {p['lcp_median_ms']}ms)  "
+          f"FCP={p['fcp_ms']}ms  CLS={p['cls']}  "
           f"LCP element=<{p['lcp_element']}> {p['lcp_text'][:30]}")
     print(f"  rendered contrast: checked={c['checked']} failures={c['failures']} min_ratio={c['min_ratio']}")
     print(f"  layout: overflow={l['horizontalOverflow']} scrollW={l['scrollWidth']} "

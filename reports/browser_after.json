@@ -1,18 +1,27 @@
 {
   "schema": "web-design-distiller/browser-audit@1",
   "tool_version": "1.0.0",
-  "generated_at": "2026-11-14T10:03:17+08:00",
+  "generated_at": "2026-11-14T10:19:50+08:00",
   "input": {
     "path": "examples\\after.html",
-    "sha256": "53689adc1b9f33e6a2cb8f966153aa69887f144e3272fb8adbf452b5213bbd5f"
+    "sha256": "952f138eeba0d5ad74feec8416ae34a4edbb59e8972b5650f1f7aa550a17e874"
   },
   "engine": "msedge",
   "viewport_width": 1440,
   "settle_ms": 1800,
+  "repeat": 3,
   "performance": {
-    "lcp_ms": 608,
-    "fcp_ms": 608,
+    "lcp_ms": 588,
+    "fcp_ms": 588,
+    "lcp_median_ms": 136,
     "cls": 0,
+    "lcp_samples_ms": [
+      588,
+      128,
+      136
+    ],
+    "lcp_min_ms": 128,
+    "lcp_max_ms": 588,
     "lcp_element": "h1",
     "lcp_text": "让知识自己找到人",
     "good_thresholds": {
@@ -22,7 +31,7 @@
     }
   },
   "rendered_contrast": {
-    "checked": 61,
+    "checked": 67,
     "failures": 0,
     "bad": [],
     "min_ratio": 4.89
@@ -30,10 +39,18 @@
   "layout": {
     "viewportWidth": 1440,
     "scrollWidth": 1440,
-    "scrollHeight": 2327,
+    "scrollHeight": 2867,
     "horizontalOverflow": false,
-    "focusableCount": 10,
-    "images": [],
+    "focusableCount": 11,
+    "images": [
+      {
+        "src": "assets/prism-desk.webp",
+        "hasAlt": true,
+        "hasSize": true,
+        "complete": true,
+        "naturalWidth": 1200
+      }
+    ],
     "brokenImages": 0,
     "fontStatus": "loaded",
     "h1Count": 1,
@@ -41,7 +58,7 @@
     "bodyFont": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", \"PingFang SC\", \"Hiragino Sans GB\", \"Microso"
   },
   "motion": {
-    "reveal_count": 19,
+    "reveal_count": 21,
     "normal_min_opacity_after_scroll": 1,
     "normal_all_visible": true,
     "reduced_motion_min_opacity": 1,
@@ -49,6 +66,7 @@
   },
   "notes": [
     "Local file:// measurement, not CrUX/RUM field data; not the 75th percentile across devices.",
+    "LCP/FCP headline values come from the FIRST cold load in a fresh context; N repeated loads are kept only to expose local variance (cached reloads are much faster and must not be used to claim a gain). CLS uses the worst run.",
     "INP requires real user interactions and is NOT measured here.",
     "Contrast is computed on rendered computed styles; gradients/images behind text still need manual review."
   ]

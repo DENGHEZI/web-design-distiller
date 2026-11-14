@@ -1,11 +1,11 @@
 {
   "schema": "web-design-distiller/audit@1",
   "tool_version": "1.0.0",
-  "generated_at": "2026-11-14T10:02:58+08:00",
+  "generated_at": "2026-11-14T10:15:04+08:00",
   "input": {
     "path": "examples\\after.html",
-    "sha256": "53689adc1b9f33e6a2cb8f966153aa69887f144e3272fb8adbf452b5213bbd5f",
-    "bytes": 22962
+    "sha256": "952f138eeba0d5ad74feec8416ae34a4edbb59e8972b5650f1f7aa550a17e874",
+    "bytes": 25747
   },
   "css_sources": [
     "after.html#style[0]"
@@ -40,11 +40,11 @@
     "cta_count": {
       "status": "pass",
       "value": 1,
-      "evidence": "html:356"
+      "evidence": "html:407"
     },
     "nav_items": {
       "status": "pass",
-      "value": 4,
+      "value": 5,
       "evidence": "count(<nav> a)"
     },
     "img_alt_missing": {
@@ -75,19 +75,19 @@
     "contrast_min_ratio": {
       "status": "pass",
       "value": 4.89,
-      "evidence": "min over 39 text-color declarations (per-rule background when declared; fallback bg=rgb(255, 255, 255))"
+      "evidence": "min over 43 text-color declarations (per-rule background when declared; fallback bg=rgb(255, 255, 255))"
     },
     "spacing_violations": {
       "status": "pass",
       "value": 0,
       "evidence": "none",
-      "note": "79 px spacing values inspected"
+      "note": "88 px spacing values inspected"
     },
     "type_scale_violations": {
       "status": "pass",
       "value": 0,
       "evidence": "none",
-      "note": "38 font-size declarations inspected"
+      "note": "42 font-size declarations inspected"
     },
     "heading_size_ratio": {
       "status": "pass",
@@ -97,7 +97,7 @@
     "absolute_font_units": {
       "status": "pass",
       "value": 0.0,
-      "evidence": "0px / 38 font-size declarations"
+      "evidence": "0px / 42 font-size declarations"
     },
     "unique_colors": {
       "status": "pass",
@@ -126,8 +126,8 @@
     },
     "external_resources": {
       "status": "pass",
-      "value": 0,
-      "evidence": "none"
+      "value": 1,
+      "evidence": "html:484"
     },
     "css_imports": {
       "status": "pass",
@@ -136,8 +136,8 @@
     },
     "bytes_total": {
       "status": "pass",
-      "value": 36673,
-      "evidence": "html + provided css bytes"
+      "value": 25747,
+      "evidence": "html bytes (incl. inline CSS) + external CSS bytes"
     },
     "semantic_tags": {
       "status": "pass",
@@ -218,7 +218,7 @@
       "pass": true
     },
     {
-      "line": 75,
+      "line": 83,
       "selector": "nav a",
       "color": "var(--text-muted)",
       "background": "rgb(255, 255, 255)",
@@ -228,7 +228,7 @@
       "pass": true
     },
     {
-      "line": 82,
+      "line": 90,
       "selector": "nav a:hover",
       "color": "var(--text)",
       "background": "rgb(255, 255, 255)",
@@ -238,7 +238,7 @@
       "pass": true
     },
     {
-      "line": 93,
+      "line": 101,
       "selector": ".btn--primary",
       "color": "var(--text-on-accent)",
       "background": "rgb(11, 127, 114)",
@@ -248,7 +248,7 @@
       "pass": true
     },
     {
-      "line": 96,
+      "line": 104,
       "selector": ".btn--secondary",
       "color": "var(--text)",
       "background": "rgb(255, 255, 255)",
@@ -258,7 +258,7 @@
       "pass": true
     },
     {
-      "line": 99,
+      "line": 107,
       "selector": "a",
       "color": "var(--accent-strong)",
       "background": "rgb(255, 255, 255)",
@@ -268,7 +268,7 @@
       "pass": true
     },
     {
-      "line": 101,
+      "line": 109,
       "selector": ".text-link",
       "color": "var(--text)",
       "background": "rgb(255, 255, 255)",
@@ -278,7 +278,7 @@
       "pass": true
     },
     {
-      "line": 105,
+      "line": 113,
       "selector": ".text-link:hover",
       "color": "var(--accent-strong)",
       "background": "rgb(255, 255, 255)",
@@ -288,7 +288,7 @@
       "pass": true
     },
     {
-      "line": 114,
+      "line": 122,
       "selector": "input",
       "color": "var(--text)",
       "background": "rgb(255, 255, 255)",
@@ -298,7 +298,7 @@
       "pass": true
     },
     {
-      "line": 119,
+      "line": 127,
       "selector": "input::placeholder",
       "color": "var(--text-muted)",
       "background": "rgb(255, 255, 255)",
@@ -308,7 +308,7 @@
       "pass": true
     },
     {
-      "line": 120,
+      "line": 128,
       "selector": "::selection",
       "color": "var(--text-on-accent)",
       "background": "rgb(11, 127, 114)",
@@ -318,7 +318,7 @@
       "pass": true
     },
     {
-      "line": 130,
+      "line": 138,
       "selector": ".trust",
       "color": "var(--text-muted)",
       "background": "rgb(255, 255, 255)",
@@ -328,7 +328,7 @@
       "pass": true
     },
     {
-      "line": 146,
+      "line": 154,
       "selector": ".app-bar-title",
       "color": "var(--text-muted)",
       "background": "rgb(255, 255, 255)",
@@ -338,7 +338,7 @@
       "pass": true
     },
     {
-      "line": 149,
+      "line": 157,
       "selector": ".app-side-label",
       "color": "var(--text-muted)",
       "background": "rgb(255, 255, 255)",
@@ -348,7 +348,7 @@
       "pass": true
     },
     {
-      "line": 154,
+      "line": 162,
       "selector": ".app-side li",
       "color": "var(--text-muted)",
       "background": "rgb(255, 255, 255)",
@@ -358,7 +358,7 @@
       "pass": true
     },
     {
-      "line": 159,
+      "line": 167,
       "selector": ".app-side li:hover",
       "color": "var(--text)",
       "background": "rgb(255, 255, 255)",
@@ -368,7 +368,7 @@
       "pass": true
     },
     {
-      "line": 160,
+      "line": 168,
       "selector": ".app-side li.is-active",
       "color": "var(--text)",
       "background": "rgb(255, 255, 255)",
@@ -378,7 +378,7 @@
       "pass": true
     },
     {
-      "line": 165,
+      "line": 173,
       "selector": ".app-crumb",
       "color": "var(--text-muted)",
       "background": "rgb(255, 255, 255)",
@@ -388,7 +388,7 @@
       "pass": true
     },
     {
-      "line": 167,
+      "line": 175,
       "selector": ".app-doc p",
       "color": "var(--text-muted)",
       "background": "rgb(255, 255, 255)",
@@ -398,7 +398,7 @@
       "pass": true
     },
     {
-      "line": 173,
+      "line": 181,
       "selector": ".app-callout strong",
       "color": "var(--text)",
       "background": "rgb(255, 255, 255)",
@@ -408,7 +408,7 @@
       "pass": true
     },
     {
-      "line": 174,
+      "line": 182,
       "selector": ".app-callout span",
       "color": "var(--text-muted)",
       "background": "rgb(255, 255, 255)",
@@ -418,7 +418,7 @@
       "pass": true
     },
     {
-      "line": 176,
+      "line": 184,
       "selector": ".app-tag",
       "color": "var(--text-muted)",
       "background": "rgb(255, 255, 255)",
@@ -428,7 +428,7 @@
       "pass": true
     },
     {
-      "line": 178,
+      "line": 186,
       "selector": ".app-tag--gold",
       "color": "var(--gold)",
       "background": "rgb(255, 255, 255)",
@@ -438,7 +438,7 @@
       "pass": true
     },
     {
-      "line": 187,
+      "line": 195,
       "selector": ".float-badge span",
       "color": "var(--text-muted)",
       "background": "rgb(255, 255, 255)",
@@ -448,7 +448,7 @@
       "pass": true
     },
     {
-      "line": 198,
+      "line": 206,
       "selector": ".metric-label",
       "color": "var(--text-muted)",
       "background": "rgb(255, 255, 255)",
@@ -458,7 +458,7 @@
       "pass": true
     },
     {
-      "line": 204,
+      "line": 212,
       "selector": ".feature-intro p",
       "color": "var(--text-muted)",
       "background": "rgb(255, 255, 255)",
@@ -468,7 +468,7 @@
       "pass": true
     },
     {
-      "line": 212,
+      "line": 220,
       "selector": ".feature-num",
       "color": "var(--gold)",
       "background": "rgb(255, 255, 255)",
@@ -478,7 +478,7 @@
       "pass": true
     },
     {
-      "line": 217,
+      "line": 225,
       "selector": ".feature-item:hover .feature-num",
       "color": "var(--accent-strong)",
       "background": "rgb(255, 255, 255)",
@@ -488,7 +488,7 @@
       "pass": true
     },
     {
-      "line": 219,
+      "line": 227,
       "selector": ".feature-item p",
       "color": "var(--text-muted)",
       "background": "rgb(255, 255, 255)",
@@ -498,7 +498,47 @@
       "pass": true
     },
     {
-      "line": 233,
+      "line": 241,
+      "selector": ".story-photo figcaption",
+      "color": "var(--text-muted)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 12.0,
+      "ratio": 6.33,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 249,
+      "selector": ".quote-mark",
+      "color": "var(--gold)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 48.0,
+      "ratio": 5.36,
+      "required": 3.0,
+      "pass": true
+    },
+    {
+      "line": 253,
+      "selector": ".story-quote p",
+      "color": "var(--text)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 24.0,
+      "ratio": 17.01,
+      "required": 3.0,
+      "pass": true
+    },
+    {
+      "line": 257,
+      "selector": ".story-quote cite",
+      "color": "var(--text-muted)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 14.0,
+      "ratio": 6.33,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 275,
       "selector": ".state-row p",
       "color": "var(--text-muted)",
       "background": "rgb(255, 255, 255)",
@@ -508,7 +548,7 @@
       "pass": true
     },
     {
-      "line": 234,
+      "line": 276,
       "selector": ".state-tag",
       "color": "var(--text-muted)",
       "background": "rgb(255, 255, 255)",
@@ -518,7 +558,7 @@
       "pass": true
     },
     {
-      "line": 235,
+      "line": 277,
       "selector": ".state-tag--error",
       "color": "var(--gold)",
       "background": "rgb(255, 255, 255)",
@@ -528,7 +568,7 @@
       "pass": true
     },
     {
-      "line": 236,
+      "line": 278,
       "selector": ".state-action",
       "color": "var(--accent-strong)",
       "background": "rgb(255, 255, 255)",
@@ -538,7 +578,7 @@
       "pass": true
     },
     {
-      "line": 247,
+      "line": 289,
       "selector": ".closing > .container > p",
       "color": "var(--text-muted)",
       "background": "rgb(255, 255, 255)",
@@ -548,7 +588,7 @@
       "pass": true
     },
     {
-      "line": 253,
+      "line": 295,
       "selector": ".form-note",
       "color": "var(--text-muted)",
       "background": "rgb(255, 255, 255)",
@@ -558,7 +598,7 @@
       "pass": true
     },
     {
-      "line": 256,
+      "line": 299,
       "selector": "footer p",
       "color": "var(--text-muted)",
       "background": "rgb(255, 255, 255)",
@@ -569,12 +609,12 @@
     }
   ],
   "metrics": {
-    "rules": 142,
-    "imgs": 0,
-    "tags": 124,
-    "spacing_values": 79,
-    "font_size_values": 38,
-    "css_bytes": 13711
+    "rules": 157,
+    "imgs": 1,
+    "tags": 140,
+    "spacing_values": 88,
+    "font_size_values": 42,
+    "css_bytes": 15345
   },
   "notes": [
     "Real LCP/INP/CLS are NOT measured here; only static risk proxies.",

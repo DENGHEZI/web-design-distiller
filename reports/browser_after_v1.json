@@ -1,7 +1,7 @@
 {
   "schema": "web-design-distiller/browser-audit@1",
   "tool_version": "1.0.0",
-  "generated_at": "2026-11-14T10:03:11+08:00",
+  "generated_at": "2026-11-14T10:19:37+08:00",
   "input": {
     "path": "examples\\after-v1.html",
     "sha256": "c657a877b9771ba25fb98ff159c23e6ad75baeed8f31cf436b8b9421834c6f5e"
@@ -9,10 +9,19 @@
   "engine": "msedge",
   "viewport_width": 1440,
   "settle_ms": 1800,
+  "repeat": 3,
   "performance": {
-    "lcp_ms": 556,
-    "fcp_ms": 556,
+    "lcp_ms": 564,
+    "fcp_ms": 564,
+    "lcp_median_ms": 104,
     "cls": 0,
+    "lcp_samples_ms": [
+      564,
+      104,
+      92
+    ],
+    "lcp_min_ms": 92,
+    "lcp_max_ms": 564,
     "lcp_element": "p",
     "lcp_text": "把散落的文档、决策与流程收进一个地方。写得清楚，找得更快，团队不用再问「那个文件在哪」。",
     "good_thresholds": {
@@ -57,6 +66,7 @@
   },
   "notes": [
     "Local file:// measurement, not CrUX/RUM field data; not the 75th percentile across devices.",
+    "LCP/FCP headline values come from the FIRST cold load in a fresh context; N repeated loads are kept only to expose local variance (cached reloads are much faster and must not be used to claim a gain). CLS uses the worst run.",
     "INP requires real user interactions and is NOT measured here.",
     "Contrast is computed on rendered computed styles; gradients/images behind text still need manual review."
   ]

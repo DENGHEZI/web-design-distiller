@@ -447,10 +447,14 @@ def audit(html_path: Path, css_paths, page_type: str):
     checks["css_imports"] = make_check(
         "pass" if imports == 0 else ("warn" if imports == 1 else "fail"), imports,
         "@import + <link rel=stylesheet>")
-    total_bytes = len(raw) + sum(len(c["text"].encode("utf-8")) for c in css_sources)
+    # Inline <style> content is already part of the HTML bytes; only add CSS
+    # supplied via --css. (Earlier versions double-counted inline CSS.)
+    external_css_bytes = sum(len(c["text"].encode("utf-8")) for c in css_sources
+                             if "#style[" not in c["name"])
+    total_bytes = len(raw) + external_css_bytes
     checks["bytes_total"] = make_check(
         "pass" if total_bytes <= 40000 else ("warn" if total_bytes <= 120000 else "fail"),
-        total_bytes, "html + provided css bytes")
+        total_bytes, "html bytes (incl. inline CSS) + external CSS bytes")
 
     # --- semantics / states / a11y preferences
     present = {t for t, _, _ in parser.tags} & {"main", "nav", "header", "footer"}

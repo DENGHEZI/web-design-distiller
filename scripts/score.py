@@ -199,7 +199,7 @@ def report(before, after, before_path, after_path, page_type, manual,
             f"{la['brokenImages']-lb['brokenImages']:+g} |")
         add(f"| ② 真实渲染 | 语义地标 | {lb['landmarks']} | {la['landmarks']} | "
             f"{la['landmarks']-lb['landmarks']:+g} |")
-        add(f"| ② 真实渲染 | LCP（本地单次） | {pb['lcp_ms']}ms | {pa['lcp_ms']}ms | "
+        add(f"| ② 真实渲染 | LCP（首次冷启动） | {pb['lcp_ms']}ms | {pa['lcp_ms']}ms | "
             f"{round(pa['lcp_ms']-pb['lcp_ms'],1):+g}ms |")
         add(f"| ② 真实渲染 | CLS（本地单次） | {pb['cls']} | {pa['cls']} | — |")
         add(f"| ② 真实渲染 | 体验门槛 | {'—' if not bg_b else ('全部通过' if all(g[1] for g in bg_b) else '存在失败')} | "
@@ -209,7 +209,9 @@ def report(before, after, before_path, after_path, page_type, manual,
     if visual:
         sc = visual.get("scores", {})
         vb = sc.get("before", {}).get("score")
-        v2 = sc.get("after_v2", {}).get("score") or sc.get("after", {}).get("score")
+        v2 = (sc.get("after_v4", {}).get("score")
+              or sc.get("after_v2", {}).get("score")
+              or sc.get("after", {}).get("score"))
         add(f"| ③ 视觉盲评 | 主观分（0–10，**不并入**） | {fmt(vb)} | {fmt(v2)} | — |")
     else:
         add("| ③ 视觉盲评 | 未做 | — | — | 不可声称视觉质量提升 |")
@@ -220,7 +222,7 @@ def report(before, after, before_path, after_path, page_type, manual,
     if bb and ba and ba["performance"]["lcp_ms"] > bb["performance"]["lcp_ms"]:
         add(f"> **反向指标**：本地 LCP 从 {bb['performance']['lcp_ms']}ms 变慢到 "
             f"{ba['performance']['lcp_ms']}ms。合规分上升并不代表所有体验指标改善。"
-            "本地单次测量波动大，需线上 75 分位数据才能定论。")
+            "本地测量波动大、区间重叠，需线上 75 分位数据才能定论。")
         add("")
     add("> **满分含义**：100 分只表示「通过本 rubric 的全部静态检查项」。评分表本身是目的性抽样的产物，"
         "边界见 `references/sources.md` §0。")
@@ -320,7 +322,14 @@ def report(before, after, before_path, after_path, page_type, manual,
             add("> 动效只用 `transform` / `opacity`，因此不产生布局位移；`prefers-reduced-motion: reduce` "
                 "下所有内容强制 `opacity: 1`。帧率与卡顿未测。")
             add("")
-        add("> **测量边界**：本地 `file://`、单次、无网络、桌面 1440px。INP 未测；"
+        if ba.get("repeat"):
+            add(f"> **重复测量**：每个页面用 {bb.get('repeat',1)} / {ba.get('repeat',1)} 个**全新浏览器上下文**分别冷加载；"
+                "主值取首次冷启动，缓存后的快速重载不计入结论。"
+                f"LCP 实测区间 before {bb['performance'].get('lcp_min_ms')}–{bb['performance'].get('lcp_max_ms')}ms、"
+                f"after {ba['performance'].get('lcp_min_ms')}–{ba['performance'].get('lcp_max_ms')}ms。"
+                "区间重叠且为本地测量时，**不得宣称两版性能有差异**。")
+            add("")
+        add("> **测量边界**：本地 `file://`、无网络、桌面 1440px。INP 未测；"
             "这些数字**不能**替代 CrUX/RUM 的 75 分位线上数据，也不能用来宣称「性能达标」。")
         add("")
 

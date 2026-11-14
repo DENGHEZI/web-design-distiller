@@ -70,19 +70,27 @@ p { font-size: 1rem; margin: 0 0 16px; }
   font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
   color: var(--text-muted); margin: 0 0 32px;
 }
-.eyebrow::before { content: ""; width: 24px; height: 2px; background: var(--accent); }
+/* Prism rays: the reusable brand signature, drawn with hairlines only. */
+.prism-glyph { width: 24px; height: 24px; flex: none; }
+.prism-glyph path { fill: none; stroke: var(--accent); stroke-width: 1.5; stroke-linecap: round; }
+.prism-glyph .ray-soft { stroke: var(--border); }
 
 /* ---------- header ---------- */
 header { border-bottom: 1px solid var(--border); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; }
 .brand { display: inline-flex; align-items: center; gap: 12px; font-weight: 650; font-size: 1.125rem; letter-spacing: -0.01em; }
+/* Brand glyph: a prism with one refracted-ray endpoint, echoed in the footer. */
 .brand-mark {
-  width: 22px; height: 22px; border-radius: 7px; background: var(--accent);
-  display: inline-block; position: relative;
+  width: 22px; height: 22px; display: inline-block; position: relative; flex: none;
+}
+.brand-mark::before {
+  content: ""; position: absolute; inset: 0;
+  background: var(--accent);
+  clip-path: polygon(50% 4%, 96% 88%, 4% 88%);
 }
 .brand-mark::after {
-  content: ""; position: absolute; width: 6px; height: 6px; border-radius: 2px;
-  background: var(--text-on-accent); top: 8px; left: 8px;
+  content: ""; position: absolute; width: 4px; height: 4px; border-radius: 50%;
+  background: var(--gold); top: 12px; left: 12px;
 }
 nav a { position: relative; margin-left: 32px; text-decoration: none; color: var(--text-muted); font-size: 0.875rem; }
 nav a::after {
@@ -230,6 +238,40 @@ input::placeholder { color: var(--text-muted); }
 .feature-item h3 { margin: 0 0 8px; }
 .feature-item p { color: var(--text-muted); font-size: 0.875rem; max-width: 52ch; margin: 0; }
 
+/* ---------- editorial story: real image + human quote ---------- */
+.story { padding: 48px 0 96px; }
+.story-grid {
+  display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 64px; align-items: center;
+}
+.story-photo { margin: 0; }
+.story-photo img {
+  display: block; width: 100%; height: auto;
+  border-radius: var(--radius-lg); border: 1px solid var(--border);
+  box-shadow: var(--shadow-1);
+}
+.story-photo figcaption {
+  font-size: 0.75rem; color: var(--text-muted); margin-top: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.story-photo figcaption::before {
+  content: ""; width: 16px; height: 1px; background: var(--gold);
+}
+.story-quote { margin: 0; }
+.quote-mark {
+  display: block; font-size: 3rem; line-height: 1;
+  color: var(--gold); margin-bottom: 8px;
+}
+.story-quote p {
+  font-size: 1.5rem; line-height: 1.5; letter-spacing: -0.015em;
+  color: var(--text); margin: 0 0 24px;
+}
+.story-quote cite { font-style: normal; font-size: 0.875rem; color: var(--text-muted); }
+.story-quote cite::before {
+  content: ""; display: block; width: 48px; height: 1px;
+  background: var(--accent); margin-bottom: 16px;
+}
+
 /* ---------- states ---------- */
 .states { padding: 64px 0; }
 .state-grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 96px; align-items: center; }
@@ -265,6 +307,7 @@ input::placeholder { color: var(--text-muted); }
 .form-note { font-size: 0.75rem; color: var(--text-muted); }
 
 footer { border-top: 1px solid var(--border); padding: 32px 0 48px; }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 footer p { font-size: 0.875rem; color: var(--text-muted); margin: 0; }
 
 /* ---------- motion: progressive enhancement, transform/opacity only ---------- */
@@ -298,7 +341,7 @@ footer p { font-size: 0.875rem; color: var(--text-muted); margin: 0; }
 .js .float-badge { animation: floaty 4.5s ease-in-out infinite; }
 
 @media (max-width: 960px) {
-  .hero-grid, .feature-grid, .state-grid { grid-template-columns: 1fr; gap: 48px; }
+  .hero-grid, .feature-grid, .state-grid, .story-grid { grid-template-columns: 1fr; gap: 48px; }
   h1 { font-size: 3rem; }
   .float-badge { right: 0; bottom: -16px; }
   .metrics { gap: 24px; }
@@ -338,6 +381,7 @@ footer p { font-size: 0.875rem; color: var(--text-muted); margin: 0; }
     <span class="brand"><span class="brand-mark" aria-hidden="true"></span>棱镜文档</span>
     <nav aria-label="主导航">
       <a href="#features">功能</a>
+      <a href="#story">客户故事</a>
       <a href="#states">状态反馈</a>
       <a href="#docs">文档</a>
       <a href="#start">开始使用</a>
@@ -349,7 +393,14 @@ footer p { font-size: 0.875rem; color: var(--text-muted); margin: 0; }
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow reveal">团队知识库 / PrismDocs</p>
+        <p class="eyebrow reveal">
+          <svg class="prism-glyph" viewBox="0 0 24 24" aria-hidden="true">
+            <path class="ray-soft" d="M2 12 L21 12"></path>
+            <path d="M2 12 L18 4"></path>
+            <path d="M2 12 L18 20"></path>
+          </svg>
+          团队知识库 / PrismDocs
+        </p>
         <h1 class="lift d1">让知识<br>自己找到人</h1>
         <p class="lead reveal d2">把散落的文档、决策与流程收进一个地方。写得清楚，找得更快。</p>
         <div class="hero-actions reveal d3">
@@ -427,6 +478,21 @@ footer p { font-size: 0.875rem; color: var(--text-muted); margin: 0; }
     </div>
   </section>
 
+  <section class="story" id="story">
+    <div class="container story-grid">
+      <figure class="story-photo reveal">
+        <img src="assets/prism-desk.webp" width="1200" height="684"
+             alt="白色桌面上摊开的线圈笔记本与一支黑色签字笔，柔和自然光下留有大片空白">
+        <figcaption>写下来的东西，才找得回来。</figcaption>
+      </figure>
+      <blockquote class="story-quote reveal d1">
+        <span class="quote-mark" aria-hidden="true">“</span>
+        <p>以前找一个决定，要翻三个群、两份文档和某个人的记忆。现在直接搜那句话，上下文一起回来。</p>
+        <cite>某产品团队 · 使用 8 个月 · 42 人</cite>
+      </blockquote>
+    </div>
+  </section>
+
   <section class="band states" id="states">
     <div class="container state-grid">
       <div class="reveal">
@@ -468,8 +534,9 @@ footer p { font-size: 0.875rem; color: var(--text-muted); margin: 0; }
 </main>
 
 <footer id="docs">
-  <div class="container">
-    <p>© 2026 棱镜文档 PrismDocs · 本页为 web-design-distiller 的演示样例，产品与数据均为虚构。</p>
+  <div class="container footer-inner">
+    <span class="brand"><span class="brand-mark" aria-hidden="true"></span>棱镜文档</span>
+    <p>让知识自己找到人 · © 2026 PrismDocs（演示样例，产品与数据均为虚构）</p>
   </div>
 </footer>
 

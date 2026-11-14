@@ -1,0 +1,585 @@
+{
+  "schema": "web-design-distiller/audit@1",
+  "tool_version": "1.0.0",
+  "generated_at": "2026-11-14T10:20:10+08:00",
+  "input": {
+    "path": "examples\\after-v2.html",
+    "sha256": "53689adc1b9f33e6a2cb8f966153aa69887f144e3272fb8adbf452b5213bbd5f",
+    "bytes": 22962
+  },
+  "css_sources": [
+    "after-v2.html#style[0]"
+  ],
+  "page_type": "landing",
+  "background_rgb": [
+    255,
+    255,
+    255
+  ],
+  "checks": {
+    "lang_attr": {
+      "status": "pass",
+      "value": "zh-CN",
+      "evidence": "html:6"
+    },
+    "meta_viewport": {
+      "status": "pass",
+      "value": true,
+      "evidence": "meta[name=viewport]"
+    },
+    "title_present": {
+      "status": "pass",
+      "value": "棱镜文档 PrismDocs — 让团队知识有条理",
+      "evidence": "<title>"
+    },
+    "h1_count": {
+      "status": "pass",
+      "value": 1,
+      "evidence": "count(<h1>)"
+    },
+    "cta_count": {
+      "status": "pass",
+      "value": 1,
+      "evidence": "html:356"
+    },
+    "nav_items": {
+      "status": "pass",
+      "value": 4,
+      "evidence": "count(<nav> a)"
+    },
+    "img_alt_missing": {
+      "status": "pass",
+      "value": 0,
+      "evidence": "none"
+    },
+    "img_unsized": {
+      "status": "pass",
+      "value": 0,
+      "evidence": "none"
+    },
+    "focus_visible_defined": {
+      "status": "pass",
+      "value": true,
+      "evidence": ":focus-visible in CSS"
+    },
+    "outline_none_uncompensated": {
+      "status": "pass",
+      "value": 0,
+      "evidence": "none"
+    },
+    "contrast_failures": {
+      "status": "pass",
+      "value": 0,
+      "evidence": "none"
+    },
+    "contrast_min_ratio": {
+      "status": "pass",
+      "value": 4.89,
+      "evidence": "min over 39 text-color declarations (per-rule background when declared; fallback bg=rgb(255, 255, 255))"
+    },
+    "spacing_violations": {
+      "status": "pass",
+      "value": 0,
+      "evidence": "none",
+      "note": "79 px spacing values inspected"
+    },
+    "type_scale_violations": {
+      "status": "pass",
+      "value": 0,
+      "evidence": "none",
+      "note": "38 font-size declarations inspected"
+    },
+    "heading_size_ratio": {
+      "status": "pass",
+      "value": 2.25,
+      "evidence": "h1=36.0px body=16.0px"
+    },
+    "absolute_font_units": {
+      "status": "pass",
+      "value": 0.0,
+      "evidence": "0px / 38 font-size declarations"
+    },
+    "unique_colors": {
+      "status": "pass",
+      "value": 11,
+      "evidence": "#0b7f72, #0fa693, #1c1c1e, #5f5f66, #767680, #8a6418, #e5e5ea, #fafafa, #ffffff, rgba(28,28,30,0.05), rgba(28,28,30,0.08)"
+    },
+    "gradient_count": {
+      "status": "pass",
+      "value": 0,
+      "evidence": "count(*-gradient() in CSS)"
+    },
+    "inline_style_count": {
+      "status": "pass",
+      "value": 0,
+      "evidence": "none"
+    },
+    "max_width_defined": {
+      "status": "pass",
+      "value": true,
+      "evidence": "max-width in CSS"
+    },
+    "whitespace_token": {
+      "status": "pass",
+      "value": true,
+      "evidence": "--space* token definitions"
+    },
+    "external_resources": {
+      "status": "pass",
+      "value": 0,
+      "evidence": "none"
+    },
+    "css_imports": {
+      "status": "pass",
+      "value": 0,
+      "evidence": "@import + <link rel=stylesheet>"
+    },
+    "bytes_total": {
+      "status": "pass",
+      "value": 22962,
+      "evidence": "html bytes (incl. inline CSS) + external CSS bytes"
+    },
+    "semantic_tags": {
+      "status": "pass",
+      "value": [
+        "footer",
+        "header",
+        "main",
+        "nav"
+      ],
+      "evidence": "landmark elements present"
+    },
+    "reduced_motion": {
+      "status": "pass",
+      "value": true,
+      "evidence": "@media (prefers-reduced-motion)"
+    },
+    "interaction_states": {
+      "status": "pass",
+      "value": {
+        "hover": true,
+        "focus": true,
+        "active": true,
+        "disabled": true
+      },
+      "evidence": "hover, focus, active, disabled"
+    },
+    "status_feedback": {
+      "status": "pass",
+      "value": [
+        "error",
+        "加载",
+        "错误",
+        "空状态",
+        "重试"
+      ],
+      "evidence": "loading / error / empty state signals in markup"
+    }
+  },
+  "contrast_details": [
+    {
+      "line": 31,
+      "selector": "body",
+      "color": "var(--text)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 16.0,
+      "ratio": 17.01,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 54,
+      "selector": ".meta",
+      "color": "var(--text-muted)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 14.0,
+      "ratio": 6.33,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 55,
+      "selector": ".lead",
+      "color": "var(--text-muted)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 20.0,
+      "ratio": 6.33,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 56,
+      "selector": ".eyebrow",
+      "color": "var(--text-muted)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 12.0,
+      "ratio": 6.33,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 75,
+      "selector": "nav a",
+      "color": "var(--text-muted)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 14.0,
+      "ratio": 6.33,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 82,
+      "selector": "nav a:hover",
+      "color": "var(--text)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 16.0,
+      "ratio": 17.01,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 93,
+      "selector": ".btn--primary",
+      "color": "var(--text-on-accent)",
+      "background": "rgb(11, 127, 114)",
+      "font_px": 16.0,
+      "ratio": 4.89,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 96,
+      "selector": ".btn--secondary",
+      "color": "var(--text)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 16.0,
+      "ratio": 17.01,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 99,
+      "selector": "a",
+      "color": "var(--accent-strong)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 16.0,
+      "ratio": 4.89,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 101,
+      "selector": ".text-link",
+      "color": "var(--text)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 16.0,
+      "ratio": 17.01,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 105,
+      "selector": ".text-link:hover",
+      "color": "var(--accent-strong)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 16.0,
+      "ratio": 4.89,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 114,
+      "selector": "input",
+      "color": "var(--text)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 16.0,
+      "ratio": 17.01,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 119,
+      "selector": "input::placeholder",
+      "color": "var(--text-muted)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 16.0,
+      "ratio": 6.33,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 120,
+      "selector": "::selection",
+      "color": "var(--text-on-accent)",
+      "background": "rgb(11, 127, 114)",
+      "font_px": 16.0,
+      "ratio": 4.89,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 130,
+      "selector": ".trust",
+      "color": "var(--text-muted)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 14.0,
+      "ratio": 6.33,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 146,
+      "selector": ".app-bar-title",
+      "color": "var(--text-muted)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 12.0,
+      "ratio": 6.33,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 149,
+      "selector": ".app-side-label",
+      "color": "var(--text-muted)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 12.0,
+      "ratio": 6.33,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 154,
+      "selector": ".app-side li",
+      "color": "var(--text-muted)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 14.0,
+      "ratio": 6.33,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 159,
+      "selector": ".app-side li:hover",
+      "color": "var(--text)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 16.0,
+      "ratio": 17.01,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 160,
+      "selector": ".app-side li.is-active",
+      "color": "var(--text)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 16.0,
+      "ratio": 17.01,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 165,
+      "selector": ".app-crumb",
+      "color": "var(--text-muted)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 12.0,
+      "ratio": 6.33,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 167,
+      "selector": ".app-doc p",
+      "color": "var(--text-muted)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 14.0,
+      "ratio": 6.33,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 173,
+      "selector": ".app-callout strong",
+      "color": "var(--text)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 14.0,
+      "ratio": 17.01,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 174,
+      "selector": ".app-callout span",
+      "color": "var(--text-muted)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 12.0,
+      "ratio": 6.33,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 176,
+      "selector": ".app-tag",
+      "color": "var(--text-muted)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 12.0,
+      "ratio": 6.33,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 178,
+      "selector": ".app-tag--gold",
+      "color": "var(--gold)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 16.0,
+      "ratio": 5.36,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 187,
+      "selector": ".float-badge span",
+      "color": "var(--text-muted)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 12.0,
+      "ratio": 6.33,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 198,
+      "selector": ".metric-label",
+      "color": "var(--text-muted)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 14.0,
+      "ratio": 6.33,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 204,
+      "selector": ".feature-intro p",
+      "color": "var(--text-muted)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 16.0,
+      "ratio": 6.33,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 212,
+      "selector": ".feature-num",
+      "color": "var(--gold)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 14.0,
+      "ratio": 5.36,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 217,
+      "selector": ".feature-item:hover .feature-num",
+      "color": "var(--accent-strong)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 16.0,
+      "ratio": 4.89,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 219,
+      "selector": ".feature-item p",
+      "color": "var(--text-muted)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 14.0,
+      "ratio": 6.33,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 233,
+      "selector": ".state-row p",
+      "color": "var(--text-muted)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 14.0,
+      "ratio": 6.33,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 234,
+      "selector": ".state-tag",
+      "color": "var(--text-muted)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 12.0,
+      "ratio": 6.33,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 235,
+      "selector": ".state-tag--error",
+      "color": "var(--gold)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 16.0,
+      "ratio": 5.36,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 236,
+      "selector": ".state-action",
+      "color": "var(--accent-strong)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 12.0,
+      "ratio": 4.89,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 247,
+      "selector": ".closing > .container > p",
+      "color": "var(--text-muted)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 16.0,
+      "ratio": 6.33,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 253,
+      "selector": ".form-note",
+      "color": "var(--text-muted)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 12.0,
+      "ratio": 6.33,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "line": 256,
+      "selector": "footer p",
+      "color": "var(--text-muted)",
+      "background": "rgb(255, 255, 255)",
+      "font_px": 14.0,
+      "ratio": 6.33,
+      "required": 4.5,
+      "pass": true
+    }
+  ],
+  "metrics": {
+    "rules": 142,
+    "imgs": 0,
+    "tags": 124,
+    "spacing_values": 79,
+    "font_size_values": 38,
+    "css_bytes": 13711
+  },
+  "notes": [
+    "Real LCP/INP/CLS are NOT measured here; only static risk proxies.",
+    "Contrast is computed against a single body background; gradients/images/alpha need manual review.",
+    "Compiled CSS-in-JS and stylesheets not passed via --css are out of scope.",
+    "Aesthetic judgement, copy quality and conversion are human-only items."
+  ]
+}

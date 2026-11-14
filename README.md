@@ -61,7 +61,7 @@ Extra stylesheets: `--css site.css`. Page types: `landing | app | docs | commerc
 | ② Real browser | rendered contrast failures | 12 | 0 |
 | ② Real browser | broken images | 4 | 0 |
 | ② Real browser | CLS / LCP (local, single run) | 0 / 536ms | 0 / 608ms |
-| ③ Visual review | subjective 0–10, **not merged** | 2.0 | 8.0 |
+| ③ Visual review | subjective 0–10, **not merged** | 2.0 | 8.8 |
 
 > **Anti-self-certification (v2)**: the first-round page with obvious template feel and the
 > visually redesigned second-round page **both score 100.0** on this rubric, while blind
@@ -72,6 +72,15 @@ Extra stylesheets: `--css site.css`. Page types: `landing | app | docs | commerc
 > scroll progress bar and restrained hover micro-interactions. LCP-critical elements
 > animate with `transform` only (no opacity fade), so LCP is not delayed; CLS stays 0;
 > `prefers-reduced-motion` forces every element visible (verified by `browser_audit.py`).
+
+> **v4 identity**: a prism geometry brand language (triangle mark + hairline refraction rays
+> echoed in header and footer), one real editorial photograph (30KB WebP, generated and
+> watermark-cleaned) with a large-quote customer story. Visual review 8.0 → 8.8 while the
+> compliance score stays 100.0 — a fourth demonstration that the two layers are unrelated.
+
+> **Measurement fixes**: `audit_page.py` no longer double-counts inline CSS in `bytes_total`;
+> `browser_audit.py` uses N fresh browser contexts and reports the first cold load plus the
+> full sample range (cached reloads used to fabricate a fake LCP gain).
 
 Reproduce it:
 

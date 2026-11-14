@@ -131,7 +131,7 @@
       [
         "G1 对比度达标 (WCAG 1.4.3/1.4.11)",
         true,
-        "min over 39 text-color declarations (per-rule background when declared; fallback bg=rgb(255, 255, 255))"
+        "min over 43 text-color declarations (per-rule background when declared; fallback bg=rgb(255, 255, 255))"
       ],
       [
         "G2 图片 alt 完整",
@@ -146,7 +146,7 @@
       [
         "G4 主 CTA 不超过一个",
         true,
-        "html:356"
+        "html:407"
       ],
       [
         "G5 lang 与 viewport 齐备",
@@ -161,7 +161,7 @@
     [
       "B1 渲染后文字对比度达标",
       true,
-      "checked=61 failures=0 min_ratio=4.89"
+      "checked=67 failures=0 min_ratio=4.89"
     ],
     [
       "B2 无破图",
@@ -181,7 +181,7 @@
     [
       "B5 LCP ≤ 2500ms（本地）",
       true,
-      "LCP=608ms"
+      "LCP=588ms"
     ],
     [
       "B6 动效降级后内容仍可见",
@@ -191,7 +191,7 @@
     [
       "B7 滚动后揭示元素全部可见",
       true,
-      "reveals=19 min opacity=1"
+      "reveals=21 min opacity=1"
     ]
   ]
 }

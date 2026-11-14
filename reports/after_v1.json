@@ -1,7 +1,7 @@
 {
   "schema": "web-design-distiller/audit@1",
   "tool_version": "1.0.0",
-  "generated_at": "2026-11-14T09:55:08+08:00",
+  "generated_at": "2026-11-14T10:15:03+08:00",
   "input": {
     "path": "examples\\after-v1.html",
     "sha256": "c657a877b9771ba25fb98ff159c23e6ad75baeed8f31cf436b8b9421834c6f5e",
@@ -136,8 +136,8 @@
     },
     "bytes_total": {
       "status": "pass",
-      "value": 16346,
-      "evidence": "html + provided css bytes"
+      "value": 10853,
+      "evidence": "html bytes (incl. inline CSS) + external CSS bytes"
     },
     "semantic_tags": {
       "status": "pass",
